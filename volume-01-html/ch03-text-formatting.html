@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3: Text &amp; Typography — The Engineer's Codex</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="vol1-style.css">
+</head>
+<body>
+
+    <header class="hero">
+        <h1>Chapter 3: Text &amp; Typography</h1>
+        <p class="subtitle">Volume I: The Skeleton — HTML Essentials</p>
+        <p class="author">
+            <a href="index.html" class="back-link">← Back to Table of Contents</a>
+        </p>
+    </header>
+
+    <main class="bookshelf-section">
+        <div class="chapter-content">
+
+            <!-- INTRODUCTION -->
+            <h2>Introduction</h2>
+            <p>Text is the most fundamental type of content on the web. Before images, videos, or animations existed online, there was text. HTML provides a rich set of elements to structure and format text so that it is readable, accessible, and meaningful to both humans and search engines.</p>
+            <p>In this chapter, you will learn how to use headings to create a clear hierarchy, paragraphs for body content, and inline formatting elements to emphasize or highlight specific words. You will also understand the critical difference between <strong>block-level</strong> and <strong>inline</strong> elements — a concept that will directly impact how your pages are laid out.</p>
+
+            <div class="note-box">
+                <span class="note-label">💡 Engineering Note</span>
+                <p>HTML text elements are not just about making things "look" bold or italic. They carry <strong>semantic meaning</strong>. For example, screen readers for visually impaired users rely on heading levels to navigate a page. Using the right tag is an accessibility requirement, not just a design choice.</p>
+            </div>
+
+            <!-- KEY CONCEPTS TABLE -->
+            <h2>Key Concepts</h2>
+            <table class="concept-table">
+                <thead>
+                    <tr>
+                        <th>Element</th>
+                        <th>Type</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>&lt;h1&gt;</code> – <code>&lt;h6&gt;</code></td>
+                        <td>Block</td>
+                        <td>Headings. <code>&lt;h1&gt;</code> is the most important (page title), <code>&lt;h6&gt;</code> is the least.</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;p&gt;</code></td>
+                        <td>Block</td>
+                        <td>Paragraph. Used for body text. Browsers add spacing above and below automatically.</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;strong&gt;</code></td>
+                        <td>Inline</td>
+                        <td>Strong importance. Displayed as <strong>bold</strong>. Screen readers emphasize this text.</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;em&gt;</code></td>
+                        <td>Inline</td>
+                        <td>Emphasis. Displayed as <em>italic</em>. Conveys stress or a different tone.</td>
+                    </tr>
+                    <tr>
+                        <td><code>&amp;entity_name;</code></td>
+                        <td>Inline</td>
+                        <td><strong>HTML Entities.</strong> Used to display reserved characters (like &lt;) and special symbols safely.</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;br&gt;</code></td>
+                        <td>Inline</td>
+                        <td>Line break. Forces text to the next line without starting a new paragraph.</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;hr&gt;</code></td>
+                        <td>Block</td>
+                        <td>Horizontal rule. Creates a visible divider line between sections.</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;span&gt;</code></td>
+                        <td>Inline</td>
+                        <td>A generic inline container. Has no visual effect by itself — used for CSS styling hooks.</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;blockquote&gt;</code></td>
+                        <td>Block</td>
+                        <td>Indicates a quotation from another source. Browsers typically indent it.</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;code&gt;</code></td>
+                        <td>Inline</td>
+                        <td>Represents a fragment of computer code. Displayed in a monospace font.</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;pre&gt;</code></td>
+                        <td>Block</td>
+                        <td>Preformatted text. Preserves whitespace and line breaks exactly as written.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- SECTION: HEADINGS -->
+            <h2>Headings: The Hierarchy of Content</h2>
+            <p>HTML provides six levels of headings. Think of them like an outline for a research paper or a book's chapter structure. You should only use <strong>one</strong> <code>&lt;h1&gt;</code> per page (the main title), then use <code>&lt;h2&gt;</code> through <code>&lt;h6&gt;</code> for sub-sections.</p>
+
+            <div class="code-block"><span class="comment">&lt;!-- Heading hierarchy example --&gt;</span>
+
+<span class="tag">&lt;h1&gt;</span>The Engineer's Codex<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;h2&gt;</span>Volume I: HTML Essentials<span class="tag">&lt;/h2&gt;</span>
+<span class="tag">&lt;h3&gt;</span>Chapter 3: Text and Typography<span class="tag">&lt;/h3&gt;</span>
+<span class="tag">&lt;h4&gt;</span>Section: Headings<span class="tag">&lt;/h4&gt;</span>
+<span class="tag">&lt;h5&gt;</span>Sub-section: Best Practices<span class="tag">&lt;/h5&gt;</span>
+<span class="tag">&lt;h6&gt;</span>Minor Detail<span class="tag">&lt;/h6&gt;</span></div>
+
+            <div class="note-box">
+                <span class="note-label">⚠️ Common Mistake</span>
+                <p>Never skip heading levels just for styling purposes. For example, do not jump from <code>&lt;h2&gt;</code> to <code>&lt;h5&gt;</code> because you want smaller text. Use CSS for visual sizing — use HTML headings for logical structure.</p>
+            </div>
+
+            <!-- SECTION: PARAGRAPHS -->
+            <h2>Paragraphs and Body Text</h2>
+            <p>The <code>&lt;p&gt;</code> tag is the most common element on the web. It wraps a block of text and tells the browser to add vertical spacing before and after it. Paragraphs are <strong>block-level</strong> elements, meaning they always start on a new line and take up the full available width.</p>
+
+            <div class="code-block"><span class="tag">&lt;p&gt;</span>This is the first paragraph. It stands alone as a block.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span>This is the second paragraph. Notice the automatic spacing between them.<span class="tag">&lt;/p&gt;</span></div>
+
+            <!-- SECTION: INLINE FORMATTING -->
+            <h2>Inline Formatting: Bold, Italic, and More</h2>
+            <p>Inline elements live <em>inside</em> block elements like paragraphs. They do not start a new line — instead, they flow within the text. Here are the most important ones:</p>
+
+            <div class="code-block"><span class="tag">&lt;p&gt;</span>
+    This word is <span class="tag">&lt;strong&gt;</span>very important<span class="tag">&lt;/strong&gt;</span>.
+    This word has <span class="tag">&lt;em&gt;</span>emphasis<span class="tag">&lt;/em&gt;</span>.
+    This is <span class="tag">&lt;code&gt;</span>inline code<span class="tag">&lt;/code&gt;</span>.
+<span class="tag">&lt;/p&gt;</span></div>
+
+            <table class="concept-table">
+                <thead>
+                    <tr>
+                        <th>Tag</th>
+                        <th>Visual Result</th>
+                        <th>Semantic Meaning</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>&lt;strong&gt;</code></td>
+                        <td><strong>Bold text</strong></td>
+                        <td>Strong importance (meaningful to screen readers)</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;b&gt;</code></td>
+                        <td><strong>Bold text</strong></td>
+                        <td>Visually bold only (no semantic meaning)</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;em&gt;</code></td>
+                        <td><em>Italic text</em></td>
+                        <td>Stressed emphasis (meaningful to screen readers)</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;i&gt;</code></td>
+                        <td><em>Italic text</em></td>
+                        <td>Visually italic only (no semantic meaning)</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;mark&gt;</code></td>
+                        <td>Highlighted text</td>
+                        <td>Text marked for reference or relevance</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;small&gt;</code></td>
+                        <td>Smaller text</td>
+                        <td>Side comments or fine print</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;del&gt;</code></td>
+                        <td><del>Strikethrough</del></td>
+                        <td>Content that has been deleted or is no longer accurate</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;sub&gt;</code></td>
+                        <td>H<sub>2</sub>O</td>
+                        <td>Subscript (chemical formulas, footnotes)</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;sup&gt;</code></td>
+                        <td>x<sup>2</sup></td>
+                        <td>Superscript (exponents, ordinals like 1st)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- SECTION: BLOCK vs INLINE -->
+            <h2>Block vs Inline: The Core Difference</h2>
+            <p>Understanding whether an element is <strong>block-level</strong> or <strong>inline</strong> is one of the most important concepts in HTML and CSS. It determines how elements stack and flow on the page.</p>
+
+            <table class="concept-table">
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Block Elements</th>
+                        <th>Inline Elements</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Starts on a new line?</td>
+                        <td>Yes — always</td>
+                        <td>No — flows within the line</td>
+                    </tr>
+                    <tr>
+                        <td>Takes full width?</td>
+                        <td>Yes — stretches to fill the container</td>
+                        <td>No — only as wide as its content</td>
+                    </tr>
+                    <tr>
+                        <td>Can contain other blocks?</td>
+                        <td>Yes</td>
+                        <td>No — only text and other inline elements</td>
+                    </tr>
+                    <tr>
+                        <td>Examples</td>
+                        <td><code>&lt;p&gt;</code>, <code>&lt;h1&gt;</code>, <code>&lt;div&gt;</code>, <code>&lt;blockquote&gt;</code></td>
+                        <td><code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;span&gt;</code>, <code>&lt;a&gt;</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code-block"><span class="comment">&lt;!-- Block vs Inline behavior --&gt;</span>
+
+<span class="comment">&lt;!-- These two paragraphs stack vertically (block) --&gt;</span>
+<span class="tag">&lt;p&gt;</span>First paragraph.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span>Second paragraph.<span class="tag">&lt;/p&gt;</span>
+
+<span class="comment">&lt;!-- These two spans sit side by side (inline) --&gt;</span>
+<span class="tag">&lt;p&gt;</span>
+    <span class="tag">&lt;span&gt;</span>Hello<span class="tag">&lt;/span&gt;</span>
+    <span class="tag">&lt;span&gt;</span>World<span class="tag">&lt;/span&gt;</span>
+<span class="tag">&lt;/p&gt;</span></div>
+
+            <!-- SECTION: SPECIAL TEXT -->
+            <h2>Special Text Elements</h2>
+            <p>HTML also provides elements for specific text patterns that go beyond simple bold and italic:</p>
+
+            <div class="code-block"><span class="comment">&lt;!-- Blockquote for citations --&gt;</span>
+<span class="tag">&lt;blockquote&gt;</span>
+    <span class="tag">&lt;p&gt;</span>The best way to predict the future is to invent it.<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;footer&gt;</span>— Alan Kay<span class="tag">&lt;/footer&gt;</span>
+<span class="tag">&lt;/blockquote&gt;</span>
+
+<span class="comment">&lt;!-- Preformatted text preserves spaces and line breaks --&gt;</span>
+<span class="tag">&lt;pre&gt;</span>
+    Line 1
+    Line 2
+        Indented line
+<span class="tag">&lt;/pre&gt;</span>
+
+<span class="comment">&lt;!-- Abbreviations with tooltip --&gt;</span>
+<span class="tag">&lt;p&gt;</span>The <span class="tag">&lt;abbr</span> <span class="attr">title</span>=<span class="value">"HyperText Markup Language"</span><span class="tag">&gt;</span>HTML<span class="tag">&lt;/abbr&gt;</span> spec is maintained by W3C.<span class="tag">&lt;/p&gt;</span></div>
+
+            <!-- SECTION: SPECIAL CHARACTERS (HTML ENTITIES) -->
+            <h2>Special Characters: HTML Entities</h2>
+            <p>In HTML, certain characters are <strong>reserved</strong> because the browser uses them as part of the language itself. For example, <code>&lt;</code> and <code>&gt;</code> mark the start and end of tags. If you type them directly into your content, the browser will try to interpret them as code instead of displaying them as text.</p>
+            <p>To safely display these characters, we use <strong>HTML Entities</strong>. An entity always follows this syntax: an ampersand (<code>&amp;</code>), followed by the entity name, followed by a semicolon (<code>;</code>).</p>
+
+            <table class="concept-table">
+                <thead>
+                    <tr>
+                        <th>Character</th>
+                        <th>Entity Code</th>
+                        <th>Technical Use Case</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>&lt;</td><td><code>&amp;lt;</code></td><td>Less Than — displaying HTML tags in documentation.</td></tr>
+                    <tr><td>&gt;</td><td><code>&amp;gt;</code></td><td>Greater Than — closing bracket for tag display.</td></tr>
+                    <tr><td>&amp;</td><td><code>&amp;amp;</code></td><td>Ampersand — must be escaped to avoid triggering an entity.</td></tr>
+                    <tr><td>&copy;</td><td><code>&amp;copy;</code></td><td>Copyright symbol — used in footer metadata.</td></tr>
+                    <tr><td>&deg;</td><td><code>&amp;deg;</code></td><td>Degree symbol — used for temperature (e.g., 25&deg;C).</td></tr>
+                    <tr><td>&nbsp;</td><td><code>&amp;nbsp;</code></td><td>Non-breaking space — prevents words from splitting across lines.</td></tr>
+                    <tr><td>&quot;</td><td><code>&amp;quot;</code></td><td>Double quote — used inside attribute values.</td></tr>
+                </tbody>
+            </table>
+
+            <div class="code-block"><span class="comment">&lt;!-- Displaying a tag as text using entities --&gt;</span>
+<span class="tag">&lt;p&gt;</span>To bold text, use the <span class="tag">&lt;code&gt;</span><span class="text">&amp;lt;strong&amp;gt;</span><span class="tag">&lt;/code&gt;</span> tag.<span class="tag">&lt;/p&gt;</span>
+
+<span class="comment">&lt;!-- Engineering example: Temperature --&gt;</span>
+<span class="tag">&lt;p&gt;</span>Operating Range: -40<span class="text">&amp;deg;</span>C to +125<span class="text">&amp;deg;</span>C.<span class="tag">&lt;/p&gt;</span>
+
+<span class="comment">&lt;!-- Copyright in a footer --&gt;</span>
+<span class="tag">&lt;p&gt;</span><span class="text">&amp;copy;</span> 2026 The Engineer's Codex<span class="tag">&lt;/p&gt;</span></div>
+
+            <div class="note-box">
+                <span class="note-label">💡 Named vs. Numeric Entities</span>
+                <p>Every entity can also be written using a numeric code. For example, <code>&amp;lt;</code> can also be written as <code>&amp;#60;</code>. Named entities are preferred because they are easier to read and remember.</p>
+            </div>
+
+            <!-- SECTION: LINE BREAKS AND DIVIDERS -->
+            <h2>Line Breaks and Horizontal Rules</h2>
+            <p>Sometimes you need to force a line break without creating a new paragraph, or add a visual divider between sections. HTML provides two self-closing elements for this:</p>
+
+            <div class="code-block"><span class="comment">&lt;!-- Line break (no closing tag needed) --&gt;</span>
+<span class="tag">&lt;p&gt;</span>
+    123 Main Street<span class="tag">&lt;br&gt;</span>
+    Springfield, IL 62704<span class="tag">&lt;br&gt;</span>
+    United States
+<span class="tag">&lt;/p&gt;</span>
+
+<span class="comment">&lt;!-- Horizontal rule — a visual section divider --&gt;</span>
+<span class="tag">&lt;hr&gt;</span></div>
+
+            <div class="note-box">
+                <span class="note-label">💡 Best Practice</span>
+                <p>Avoid using <code>&lt;br&gt;</code> for spacing between elements. That is what CSS margins and padding are for (covered in Volume II). Use <code>&lt;br&gt;</code> only where a line break is part of the content itself, such as addresses or poetry.</p>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="summary-box">
+                <h3>📋 Chapter Summary</h3>
+                <ul>
+                    <li>Use <code>&lt;h1&gt;</code> through <code>&lt;h6&gt;</code> for a clear content hierarchy — never skip levels.</li>
+                    <li>Wrap body text in <code>&lt;p&gt;</code> tags — they are the workhorses of content.</li>
+                    <li>Use <code>&lt;strong&gt;</code> and <code>&lt;em&gt;</code> for meaningful emphasis, not <code>&lt;b&gt;</code> and <code>&lt;i&gt;</code>.</li>
+                    <li>Block elements stack vertically; inline elements flow within the line.</li>
+                    <li>Use <code>&lt;blockquote&gt;</code> for quotes, <code>&lt;code&gt;</code> for code, <code>&lt;pre&gt;</code> for preserving whitespace.</li>
+                    <li>Use <code>&lt;br&gt;</code> only for content-based line breaks, not for visual spacing.</li>
+                    <li>Use <strong>HTML Entities</strong> (like <code>&amp;lt;</code> and <code>&amp;copy;</code>) to safely display reserved characters and technical symbols.</li>
+                </ul>
+            </div>
+
+            <!-- CHAPTER NAVIGATION -->
+                <nav class="chapter-nav">
+                    <a href="ch02-semantic-tags.html">← Chapter 2: Semantic Tags</a>
+                    <a href="ch04-links-navigation.html">Chapter 4: Links &amp; Navigation →</a>
+                </nav>
+            </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Jethneil Joem Calayan — The Engineer's Codex</p>
+        <p class="version">Version: 041920260036</p>
+    </footer>
+
+</body>
+</html>

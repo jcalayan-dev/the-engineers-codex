@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 2: Page Architecture — The Engineer's Codex</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="vol1-style.css">
+</head>
+<body>
+
+    <header class="hero">
+        <h1>Chapter 2: Page Architecture</h1>
+        <p class="subtitle">Volume I: The Skeleton — HTML Essentials</p>
+        <p class="author">
+            <a href="index.html" class="back-link">← Back to Table of Contents</a>
+        </p>
+    </header>
+
+    <main class="bookshelf-section">
+        <div class="chapter-content">
+
+            <!-- INTRODUCTION -->
+            <h2>Introduction</h2>
+            <p>In software engineering, the architecture of your application dictates how easily it can be understood, maintained, and scaled. Early web development relied heavily on generic containers to build layouts, resulting in code that was visually functional but structurally meaningless to machines—a phenomenon known as "Div Soup."</p>
+            <p>Modern HTML5 introduced a clear distinction between <strong>Semantic Landmarks</strong> (tags that explicitly describe their purpose) and <strong>Generic Containers</strong> (tags used purely for layout). Furthermore, to bridge the gap between our HTML structure and our CSS styling, we must use <strong>Identifiers</strong> to label these elements.</p>
+            <p>In this chapter, you will learn how to architect a page using meaningful landmarks, when to fall back on generic containers like <code>&lt;div&gt;</code> and <code>&lt;span&gt;</code>, and how to classify your elements using <code>class</code> and <code>id</code> attributes.</p>
+
+            <!-- KEY CONCEPTS TABLE -->
+            <h2>Key Concepts</h2>
+            <table class="concept-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Elements / Attributes</th>
+                        <th>Engineering Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Semantic Landmarks</strong></td>
+                        <td><code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;nav&gt;</code></td>
+                        <td>Defines major, meaningful regions of a webpage for browsers, SEO, and assistive technologies.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thematic Groupings</strong></td>
+                        <td><code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code></td>
+                        <td>Organizes related content within the main landmarks into logical, self-contained units.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Generic Containers</strong></td>
+                        <td><code>&lt;div&gt;</code> (Block), <code>&lt;span&gt;</code> (Inline)</td>
+                        <td>Provides structure for CSS layouts and styling when no semantic meaning applies.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Identifiers</strong></td>
+                        <td><code>class</code>, <code>id</code></td>
+                        <td>Global attributes used to label elements, creating the necessary hooks for CSS and JavaScript.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- SECTION 1: SEMANTIC LANDMARKS -->
+            <h2>1. Semantic Landmarks (The Big Picture)</h2>
+            <p>Landmarks are the primary structural boundaries of your page. They provide a high-level map that screen readers and search engine crawlers use to navigate your application.</p>
+
+            <h3>The &lt;header&gt;</h3>
+            <p>The <code>&lt;header&gt;</code> element represents introductory content. While typically used at the very top of a page for logos and global search bars, it can also be used inside an <code>&lt;article&gt;</code> to group a title and author name.</p>
+
+            <h3>The &lt;main&gt;</h3>
+            <p>The <code>&lt;main&gt;</code> element is the "Source of Truth" for your page. It contains the unique, dominant content of the document. <strong>Strict Rule:</strong> There must only be one visible <code>&lt;main&gt;</code> element per page. This is critical for accessibility.</p>
+
+            <h3>The &lt;footer&gt;</h3>
+            <p>The <code>&lt;footer&gt;</code> represents the closing metadata of a section or page. It typically contains copyright data, legal links, or version numbers (like our <code>041820261802</code> version tag).</p>
+
+            <h3>The &lt;nav&gt;</h3>
+            <p>The <code>&lt;nav&gt;</code> (Navigation) element is reserved for major blocks of navigation links. Not every group of links needs a <code>&lt;nav&gt;</code> tag—save it for primary site menus or tables of contents.</p>
+
+            <div class="code-block"><span class="comment">&lt;!-- Example of a Semantic Landmark Architecture --&gt;</span>
+<span class="tag">&lt;header&gt;</span>
+    <span class="tag">&lt;h1&gt;</span>Allegro Yield Dashboard<span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;nav&gt;</span>
+        <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"/reports"</span><span class="tag">&gt;</span>Reports<span class="tag">&lt;/a&gt;</span>
+        <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"/settings"</span><span class="tag">&gt;</span>Settings<span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;/nav&gt;</span>
+<span class="tag">&lt;/header&gt;</span>
+
+<span class="tag">&lt;main&gt;</span>
+    <span class="comment">&lt;!-- Primary content goes here --&gt;</span>
+<span class="tag">&lt;/main&gt;</span>
+
+<span class="tag">&lt;footer&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Internal Use Only. Version 2.4.1<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/footer&gt;</span></div>
+
+            <!-- SECTION 2: GENERIC CONTAINERS -->
+            <h2>2. Generic Containers: Div and Span</h2>
+            <p>If semantic tags are so important, why do we ever use generic containers? The answer is <strong>Layout and Styling</strong>. Sometimes you need to wrap three elements together simply to apply a CSS Grid layout. That wrapper has no thematic meaning—it is purely mechanical. For these scenarios, we use <code>&lt;div&gt;</code> and <code>&lt;span&gt;</code>.</p>
+
+            <h3>The &lt;div&gt; (Division)</h3>
+            <p>The <code>&lt;div&gt;</code> is a <strong>block-level</strong> element. It is the primary "box" used in web layouts. Because it is block-level, it naturally starts on a new line and expands to fill the width of its parent.</p>
+
+            <div class="code-block"><span class="comment">&lt;!-- Using a div to group buttons for layout --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"button-group"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;button&gt;</span>Submit<span class="tag">&lt;/button&gt;</span>
+    <span class="tag">&lt;button&gt;</span>Cancel<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/div&gt;</span></div>
+
+            <h3>The &lt;span&gt;</h3>
+            <p>The <code>&lt;span&gt;</code> is an <strong>inline-level</strong> element. It is used to wrap a small fragment of text <em>inside</em> a block element without breaking the flow of the text to a new line.</p>
+
+            <div class="code-block"><span class="comment">&lt;!-- Using a span to target a single word for CSS --&gt;</span>
+<span class="tag">&lt;p&gt;</span>
+    The server status is <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="value">"status-green"</span><span class="tag">&gt;</span>OPERATIONAL<span class="tag">&lt;/span&gt;</span>.
+<span class="tag">&lt;/p&gt;</span></div>
+
+            <!-- SECTION 3: IDENTIFIERS -->
+            <h2>3. Element Identity: Class vs. ID</h2>
+            <p>A generic <code>&lt;div&gt;</code> is useless to CSS unless we can identify it. We do this using <strong>Global Attributes</strong>. The two most important identifiers are <code>class</code> and <code>id</code>.</p>
+
+            <h3>The Class Attribute (Categories)</h3>
+            <p>A <code>class</code> is used to categorize elements. You can use the exact same class name on dozens of elements across your page. An element can also have multiple classes separated by a space.</p>
+
+            <div class="code-block"><span class="comment">&lt;!-- Multiple elements sharing the 'card' category --&gt;</span>
+<span class="tag">&lt;article</span> <span class="attr">class</span>=<span class="value">"card highlight"</span><span class="tag">&gt;</span>Content A<span class="tag">&lt;/article&gt;</span>
+<span class="tag">&lt;article</span> <span class="attr">class</span>=<span class="value">"card"</span><span class="tag">&gt;</span>Content B<span class="tag">&lt;/article&gt;</span></div>
+
+            <h3>The ID Attribute (Unique Entities)</h3>
+            <p>An <code>id</code> is a unique identifier. An ID name can only be used <strong>once</strong> per HTML document. IDs are heavily used as hooks for JavaScript logic and internal anchor links.</p>
+
+            <div class="code-block"><span class="comment">&lt;!-- A unique identifier for the main chart --&gt;</span>
+<span class="tag">&lt;section</span> <span class="attr">id</span>=<span class="value">"primary-yield-chart"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/section&gt;</span></div>
+
+            <div class="note-box">
+                <span class="note-label">🛠️ Technical Standard: Naming Conventions</span>
+                <p>Professional software engineers use <strong>kebab-case</strong> for naming classes and IDs. All letters are lowercase, and words are separated by hyphens (e.g., <code>main-nav-container</code>).</p>
+            </div>
+
+            <!-- SECTION 4: REFACTORING EXAMPLE -->
+            <h2>4. Architecture Refactoring Comparison</h2>
+            <p>Compare the code below. The "Div Soup" version relies entirely on classes to explain its structure. The "Engineered" version uses Semantic Landmarks, reserving classes purely for styling.</p>
+
+            <div class="code-block"><span class="comment">&lt;!-- ❌ DIV SOUP (Poor Architecture) --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"header"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"nav"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"main-content"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span>
+
+<span class="comment">&lt;!-- ✅ ENGINEERED (Semantic & Labeled) --&gt;</span>
+<span class="tag">&lt;header</span> <span class="attr">class</span>=<span class="value">"site-header"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;nav</span> <span class="attr">id</span>=<span class="value">"global-nav"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/nav&gt;</span>
+<span class="tag">&lt;/header&gt;</span>
+<span class="tag">&lt;main</span> <span class="attr">class</span>=<span class="value">"dashboard-layout"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/main&gt;</span></div>
+
+            <!-- SUMMARY -->
+            <div class="summary-box">
+                <h3>📋 Chapter Summary</h3>
+                <ul>
+                    <li>Use <strong>Landmarks</strong> (<code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;nav&gt;</code>) to define the high-level map of your page.</li>
+                    <li>Only use <strong>one</strong> <code>&lt;main&gt;</code> tag per HTML document.</li>
+                    <li>Use <strong>Generic Containers</strong> (<code>&lt;div&gt;</code>, <code>&lt;span&gt;</code>) only for CSS layout/styling without adding semantic meaning.</li>
+                    <li>Use the <strong><code>class</code></strong> attribute to group multiple elements into styling categories.</li>
+                    <li>Use the <strong><code>id</code></strong> attribute for unique, one-of-a-kind elements.</li>
+                    <li>Always write class and ID names in <strong>kebab-case</strong>.</li>
+                </ul>
+            </div>
+
+            <!-- CHAPTER NAVIGATION -->
+            <nav class="chapter-nav">
+                <a href="ch01-document-structure.html">← Chapter 1: The Document Structure</a>
+                <a href="ch03-text-formatting.html">Chapter 3: Text &amp; Typography →</a>
+            </nav>
+
+            </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Jethneil Joem Calayan — The Engineer's Codex</p>
+        <p class="version">Version: 041920260036</p>
+    </footer>
+
+</body>
+</html>

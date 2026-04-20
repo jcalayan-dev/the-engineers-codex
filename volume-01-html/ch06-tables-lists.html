@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 6: Tables &amp; Lists — The Engineer's Codex</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="vol1-style.css">
+</head>
+<body>
+
+    <header class="hero">
+        <h1>Chapter 6: Tables &amp; Lists</h1>
+        <p class="subtitle">Volume I: The Skeleton — HTML Essentials</p>
+        <p class="author">
+            <a href="index.html" class="back-link">← Back to Table of Contents</a>
+        </p>
+    </header>
+
+    <main class="bookshelf-section">
+        <div class="chapter-content">
+
+            <!-- INTRODUCTION -->
+            <h2>Introduction</h2>
+            <p>Data organization is a core part of engineering. When presenting information on the web, you often need to group related items or display multi-dimensional data. HTML gives us two primary tools for this: <strong>Lists</strong> (for sequential or grouped items) and <strong>Tables</strong> (for grid-based data).</p>
+            <p>In this chapter, you will learn how to create bulleted, numbered, and definition lists, as well as how to architect a semantically correct data table.</p>
+
+            <div class="note-box">
+                <span class="note-label">💡 Historical Note</span>
+                <p>In the late 1990s and early 2000s, web developers used HTML tables to build entire website layouts. This was a terrible practice for accessibility and maintenance! Today, tables should <strong>only</strong> be used for presenting tabular data (like spreadsheets or schedules), never for page layout.</p>
+            </div>
+
+            <!-- SECTION: LISTS -->
+            <h2>HTML Lists</h2>
+            <p>There are three main types of lists in HTML. Every list requires a "parent" tag to define the type of list, and "child" tags to define the individual items.</p>
+
+            <table class="concept-table">
+                <thead>
+                    <tr>
+                        <th>List Type</th>
+                        <th>Parent Tag</th>
+                        <th>Item Tag</th>
+                        <th>Visual Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Unordered List</td>
+                        <td><code>&lt;ul&gt;</code></td>
+                        <td><code>&lt;li&gt;</code> (List Item)</td>
+                        <td>Bullet points (•)</td>
+                    </tr>
+                    <tr>
+                        <td>Ordered List</td>
+                        <td><code>&lt;ol&gt;</code></td>
+                        <td><code>&lt;li&gt;</code> (List Item)</td>
+                        <td>Numbered sequence (1, 2, 3...)</td>
+                    </tr>
+                    <tr>
+                        <td>Description List</td>
+                        <td><code>&lt;dl&gt;</code></td>
+                        <td><code>&lt;dt&gt;</code> (Term) &amp; <code>&lt;dd&gt;</code> (Description)</td>
+                        <td>Dictionary-style formatting</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Unordered and Ordered Lists</h3>
+            <p>Use an unordered list (<code>&lt;ul&gt;</code>) when the sequence of items does not matter (like a grocery list). Use an ordered list (<code>&lt;ol&gt;</code>) when the sequence is important (like a step-by-step recipe or tutorial).</p>
+
+            <div class="code-block"><span class="comment">&lt;!-- Unordered List Example --&gt;</span>
+<span class="tag">&lt;h3&gt;</span>Frontend Technologies<span class="tag">&lt;/h3&gt;</span>
+<span class="tag">&lt;ul&gt;</span>
+    <span class="tag">&lt;li&gt;</span>HTML<span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;li&gt;</span>CSS<span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;li&gt;</span>JavaScript<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span>
+
+<span class="comment">&lt;!-- Ordered List Example --&gt;</span>
+<span class="tag">&lt;h3&gt;</span>Deployment Steps<span class="tag">&lt;/h3&gt;</span>
+<span class="tag">&lt;ol&gt;</span>
+    <span class="tag">&lt;li&gt;</span>Write the code.<span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;li&gt;</span>Commit to Git.<span class="tag">&lt;/li&gt;</span>
+    <span class="tag">&lt;li&gt;</span>Push to GitHub.<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ol&gt;</span></div>
+
+            <h3>Description Lists</h3>
+            <p>A description list (<code>&lt;dl&gt;</code>) is perfect for glossaries, FAQs, or metadata. It pairs a term (<code>&lt;dt&gt;</code>) with its definition (<code>&lt;dd&gt;</code>).</p>
+
+            <div class="code-block"><span class="tag">&lt;dl&gt;</span>
+    <span class="tag">&lt;dt&gt;</span>Semiconductor<span class="tag">&lt;/dt&gt;</span>
+    <span class="tag">&lt;dd&gt;</span>A material that has an electrical conductivity between a conductor and an insulator.<span class="tag">&lt;/dd&gt;</span>
+
+    <span class="tag">&lt;dt&gt;</span>Yield<span class="tag">&lt;/dt&gt;</span>
+    <span class="tag">&lt;dd&gt;</span>The percentage of non-defective items produced in a manufacturing process.<span class="tag">&lt;/dd&gt;</span>
+<span class="tag">&lt;/dl&gt;</span></div>
+
+            <!-- SECTION: HTML TABLES -->
+            <h2>HTML Tables</h2>
+            <p>Tables are used to display grid data. Creating a table requires nesting several different tags to build the rows, headers, and individual data cells.</p>
+
+            <table class="concept-table">
+                <thead>
+                    <tr>
+                        <th>Tag</th>
+                        <th>Meaning</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>&lt;table&gt;</code></td>
+                        <td>Table</td>
+                        <td>The parent container for the entire table.</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;tr&gt;</code></td>
+                        <td>Table Row</td>
+                        <td>Defines a single horizontal row.</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;th&gt;</code></td>
+                        <td>Table Header</td>
+                        <td>A cell used for column or row headings. Browsers render this as bold and centered.</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;td&gt;</code></td>
+                        <td>Table Data</td>
+                        <td>A standard cell containing the actual data.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>A Basic Table Structure</h3>
+            <p>Tables are built row by row. You create a <code>&lt;tr&gt;</code>, and inside it, you place your <code>&lt;th&gt;</code> or <code>&lt;td&gt;</code> cells.</p>
+
+            <div class="code-block"><span class="tag">&lt;table&gt;</span>
+    <span class="comment">&lt;!-- Row 1: The Headers --&gt;</span>
+    <span class="tag">&lt;tr&gt;</span>
+        <span class="tag">&lt;th&gt;</span>Language<span class="tag">&lt;/th&gt;</span>
+        <span class="tag">&lt;th&gt;</span>Type<span class="tag">&lt;/th&gt;</span>
+        <span class="tag">&lt;th&gt;</span>Difficulty<span class="tag">&lt;/th&gt;</span>
+    <span class="tag">&lt;/tr&gt;</span>
+
+    <span class="comment">&lt;!-- Row 2: First set of data --&gt;</span>
+    <span class="tag">&lt;tr&gt;</span>
+        <span class="tag">&lt;td&gt;</span>HTML<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;td&gt;</span>Markup<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;td&gt;</span>Easy<span class="tag">&lt;/td&gt;</span>
+    <span class="tag">&lt;/tr&gt;</span>
+
+    <span class="comment">&lt;!-- Row 3: Second set of data --&gt;</span>
+    <span class="tag">&lt;tr&gt;</span>
+        <span class="tag">&lt;td&gt;</span>C++<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;td&gt;</span>Programming<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;td&gt;</span>Hard<span class="tag">&lt;/td&gt;</span>
+    <span class="tag">&lt;/tr&gt;</span>
+<span class="tag">&lt;/table&gt;</span></div>
+
+            <!-- SECTION: SEMANTIC TABLES -->
+            <h2>Semantic Table Sections</h2>
+            <p>For complex tables, you should group your rows into semantic sections using <code>&lt;thead&gt;</code> (header), <code>&lt;tbody&gt;</code> (body), and <code>&lt;tfoot&gt;</code> (footer). This helps screen readers understand the table's structure and allows developers to style the header independently from the data rows.</p>
+
+            <div class="code-block"><span class="tag">&lt;table&gt;</span>
+    <span class="tag">&lt;thead&gt;</span>
+        <span class="tag">&lt;tr&gt;</span>
+            <span class="tag">&lt;th&gt;</span>Quarter<span class="tag">&lt;/th&gt;</span>
+            <span class="tag">&lt;th&gt;</span>Yield %<span class="tag">&lt;/th&gt;</span>
+        <span class="tag">&lt;/tr&gt;</span>
+    <span class="tag">&lt;/thead&gt;</span>
+
+    <span class="tag">&lt;tbody&gt;</span>
+        <span class="tag">&lt;tr&gt;</span>
+            <span class="tag">&lt;td&gt;</span>Q1<span class="tag">&lt;/td&gt;</span>
+            <span class="tag">&lt;td&gt;</span>94.5%<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;/tr&gt;</span>
+        <span class="tag">&lt;tr&gt;</span>
+            <span class="tag">&lt;td&gt;</span>Q2<span class="tag">&lt;/td&gt;</span>
+            <span class="tag">&lt;td&gt;</span>96.2%<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;/tr&gt;</span>
+    <span class="tag">&lt;/tbody&gt;</span>
+
+    <span class="tag">&lt;tfoot&gt;</span>
+        <span class="tag">&lt;tr&gt;</span>
+            <span class="tag">&lt;th&gt;</span>Average<span class="tag">&lt;/th&gt;</span>
+            <span class="tag">&lt;td&gt;</span>95.35%<span class="tag">&lt;/td&gt;</span>
+        <span class="tag">&lt;/tr&gt;</span>
+    <span class="tag">&lt;/tfoot&gt;</span>
+<span class="tag">&lt;/table&gt;</span></div>
+
+            <!-- SECTION: SPANNING ROWS AND COLUMNS -->
+            <h2>Merging Cells (Colspan and Rowspan)</h2>
+            <p>Sometimes a cell needs to stretch across multiple columns or down across multiple rows. You can achieve this using the <code>colspan</code> and <code>rowspan</code> attributes directly on a <code>&lt;th&gt;</code> or <code>&lt;td&gt;</code> tag.</p>
+
+            <div class="code-block"><span class="comment">&lt;!-- This header cell stretches across 2 columns --&gt;</span>
+<span class="tag">&lt;th</span> <span class="attr">colspan</span>=<span class="value">"2"</span><span class="tag">&gt;</span>Financial Data 2026<span class="tag">&lt;/th&gt;</span>
+
+<span class="comment">&lt;!-- This data cell stretches down across 3 rows --&gt;</span>
+<span class="tag">&lt;td</span> <span class="attr">rowspan</span>=<span class="value">"3"</span><span class="tag">&gt;</span>Category A<span class="tag">&lt;/td&gt;</span></div>
+
+            <!-- SUMMARY -->
+            <div class="summary-box">
+                <h3>📋 Chapter Summary</h3>
+                <ul>
+                    <li>Use <code>&lt;ul&gt;</code> for bulleted lists and <code>&lt;ol&gt;</code> for numbered lists. Both use <code>&lt;li&gt;</code> for items.</li>
+                    <li>Use <code>&lt;dl&gt;</code> for glossary-style lists with terms (<code>&lt;dt&gt;</code>) and descriptions (<code>&lt;dd&gt;</code>).</li>
+                    <li>Never use tables for page layout — only for tabular data.</li>
+                    <li>Tables are built row by row using <code>&lt;tr&gt;</code>, containing headers (<code>&lt;th&gt;</code>) and data cells (<code>&lt;td&gt;</code>).</li>
+                    <li>Use <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, and <code>&lt;tfoot&gt;</code> to logically segment complex tables.</li>
+                    <li>Use <code>colspan</code> and <code>rowspan</code> attributes to merge cells horizontally or vertically.</li>
+                </ul>
+            </div>
+
+            <!-- CHAPTER NAVIGATION -->
+            <nav class="chapter-nav">
+                <a href="ch05-images-media.html">← Chapter 5: Images &amp; Media</a>
+                <a href="ch07-forms-inputs.html">Chapter 7: Forms &amp; Inputs →</a>
+            </nav>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Jethneil Joem Calayan — The Engineer's Codex</p>
+        <p class="version">Version: 041920260036</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 4: Links &amp; Navigation — The Engineer's Codex</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="vol1-style.css">
+</head>
+<body>
+
+    <header class="hero">
+        <h1>Chapter 4: Links &amp; Navigation</h1>
+        <p class="subtitle">Volume I: The Skeleton — HTML Essentials</p>
+        <p class="author">
+            <a href="index.html" class="back-link">← Back to Table of Contents</a>
+        </p>
+    </header>
+
+    <main class="bookshelf-section">
+        <div class="chapter-content">
+
+            <!-- INTRODUCTION -->
+            <h2>Introduction</h2>
+            <p>Links are what make the World Wide Web a "web". Without them, every webpage would be an isolated island. In HTML, links are created using the <strong>Anchor tag</strong> (<code>&lt;a&gt;</code>).</p>
+            <p>In this chapter, you will learn how to connect your web pages together, how to link to external websites, and how to create special links that open email clients or jump to specific sections within the same page.</p>
+
+            <!-- KEY CONCEPTS TABLE -->
+            <h2>Key Concepts &amp; Attributes</h2>
+            <p>The anchor tag relies heavily on <strong>attributes</strong> — extra pieces of information added inside the opening tag that dictate how the element behaves.</p>
+
+            <table class="concept-table">
+                <thead>
+                    <tr>
+                        <th>Attribute / Syntax</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>href="..."</code></td>
+                        <td>"Hypertext Reference". The destination URL the link points to. This is mandatory.</td>
+                    </tr>
+                    <tr>
+                        <td><code>target="_blank"</code></td>
+                        <td>Tells the browser to open the link in a new tab or window.</td>
+                    </tr>
+                    <tr>
+                        <td><code>id="..."</code></td>
+                        <td>A unique identifier given to an element so a link can jump directly to it.</td>
+                    </tr>
+                    <tr>
+                        <td><code>mailto:</code></td>
+                        <td>A URL scheme used in the <code>href</code> to open the user's default email client.</td>
+                    </tr>
+                    <tr>
+                        <td><code>tel:</code></td>
+                        <td>A URL scheme used to trigger a phone call (especially useful on mobile devices).</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- SECTION: ABSOLUTE VS RELATIVE URLS -->
+            <h2>Absolute vs. Relative URLs</h2>
+            <p>When setting the <code>href</code> attribute, you can use either an absolute URL or a relative URL. Understanding the difference is critical for proper site architecture.</p>
+
+            <h3>1. Absolute URLs</h3>
+            <p>An absolute URL contains the full web address, including the protocol (<code>https://</code>) and the domain name. You use these when linking to an external website.</p>
+
+            <div class="code-block"><span class="comment">&lt;!-- Linking to an external site requires an absolute URL --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"https://github.com/jethneil"</span><span class="tag">&gt;</span>Visit my GitHub Profile<span class="tag">&lt;/a&gt;</span></div>
+
+            <h3>2. Relative URLs</h3>
+            <p>A relative URL points to a file within your own website's folder structure. It does not include the domain name. The browser calculates the path relative to the page the user is currently on.</p>
+
+            <div class="code-block"><span class="comment">&lt;!-- Linking to a file in the same folder --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"ch05-images-media.html"</span><span class="tag">&gt;</span>Next Chapter<span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- Linking to a file in the parent folder (going up one level) --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"../index.html"</span><span class="tag">&gt;</span>Back to Bookshelf<span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- Linking to a file inside a sub-folder --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"assets/cheatsheet.pdf"</span><span class="tag">&gt;</span>Download PDF<span class="tag">&lt;/a&gt;</span></div>
+
+            <!-- SECTION: OPENING IN A NEW TAB -->
+            <h2>Opening Links in a New Tab</h2>
+            <p>If you are linking to an external site, you often want to keep your own site open in the background. You achieve this using the <code>target="_blank"</code> attribute.</p>
+
+            <div class="note-box">
+                <span class="note-label">🛡️ Security Best Practice</span>
+                <p>When using <code>target="_blank"</code>, always include <code>rel="noopener noreferrer"</code>. This prevents the newly opened page from gaining access to the original page's browser session, protecting your site from a specific type of cyber attack called "tabnabbing".</p>
+            </div>
+
+            <div class="code-block"><span class="comment">&lt;!-- Safe way to open an external link in a new tab --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"https://allegromicro.com"</span> <span class="attr">target</span>=<span class="value">"_blank"</span> <span class="attr">rel</span>=<span class="value">"noopener noreferrer"</span><span class="tag">&gt;</span>
+    Visit Allegro MicroSystems
+<span class="tag">&lt;/a&gt;</span></div>
+
+            <!-- SECTION: PAGE JUMPS (ANCHORS) -->
+            <h2>Page Jumps (Internal Anchors)</h2>
+            <p>You can create links that jump to a specific section on the <em>same</em> page. This is exactly how the "Table of Contents" on Wikipedia works.</p>
+            <p>To do this, you first give the target element a unique <code>id</code>. Then, you set the link's <code>href</code> to that ID, preceded by a hash symbol (<code>#</code>).</p>
+
+            <div class="code-block"><span class="comment">&lt;!-- Step 1: Create the target with an ID --&gt;</span>
+<span class="tag">&lt;h2</span> <span class="attr">id</span>=<span class="value">"conclusion"</span><span class="tag">&gt;</span>Chapter Conclusion<span class="tag">&lt;/h2&gt;</span>
+<span class="tag">&lt;p&gt;</span>This is the bottom of the page.<span class="tag">&lt;/p&gt;</span>
+
+<span class="comment">&lt;!-- Step 2: Create a link pointing to that ID --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"#conclusion"</span><span class="tag">&gt;</span>Jump to Conclusion<span class="tag">&lt;/a&gt;</span></div>
+
+            <!-- SECTION: EMAIL AND PHONE LINKS -->
+            <h2>Email and Phone Links</h2>
+            <p>HTML allows you to trigger applications natively installed on the user's device. Using the <code>mailto:</code> scheme opens their email client, and the <code>tel:</code> scheme prompts their phone to make a call.</p>
+
+            <div class="code-block"><span class="comment">&lt;!-- Email Link (Opens Outlook, Apple Mail, etc.) --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"mailto:jethneil@example.com"</span><span class="tag">&gt;</span>Email Me<span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- Email link with a pre-filled subject line --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"mailto:jethneil@example.com?subject=Portfolio%20Inquiry"</span><span class="tag">&gt;</span>
+    Send Inquiry
+<span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- Phone Link (Triggers dialer on mobile devices) --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"tel:+1234567890"</span><span class="tag">&gt;</span>Call: (123) 456-7890<span class="tag">&lt;/a&gt;</span></div>
+
+            <!-- SECTION: ACCESSIBILITY -->
+            <h2>Accessibility: Writing Good Link Text</h2>
+            <p>Link text (the clickable words) should always clearly describe the destination. Screen reader users often bring up a list of all links on a page to navigate quickly. If every link says "Click Here", the list is completely useless to them.</p>
+
+            <div class="code-block"><span class="comment">&lt;!-- ❌ BAD: Vague and inaccessible --&gt;</span>
+<span class="tag">&lt;p&gt;</span>To view my portfolio, <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"portfolio.html"</span><span class="tag">&gt;</span>click here<span class="tag">&lt;/a&gt;</span>.<span class="tag">&lt;/p&gt;</span>
+
+<span class="comment">&lt;!-- ✅ GOOD: Descriptive and accessible --&gt;</span>
+<span class="tag">&lt;p&gt;</span>You can view my past work in my <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"portfolio.html"</span><span class="tag">&gt;</span>engineering portfolio<span class="tag">&lt;/a&gt;</span>.<span class="tag">&lt;/p&gt;</span></div>
+
+            <!-- SUMMARY -->
+            <div class="summary-box">
+                <h3>📋 Chapter Summary</h3>
+                <ul>
+                    <li>The <code>&lt;a&gt;</code> (anchor) tag is used to create links.</li>
+                    <li>The <code>href</code> attribute defines the destination of the link.</li>
+                    <li>Use <strong>Absolute URLs</strong> for external sites (e.g., <code>https://google.com</code>).</li>
+                    <li>Use <strong>Relative URLs</strong> for pages within your own site (e.g., <code>about.html</code>).</li>
+                    <li>Use <code>target="_blank"</code> with <code>rel="noopener noreferrer"</code> to safely open external links in a new tab.</li>
+                    <li>Use <code>href="#id-name"</code> to jump to a specific section on the same page.</li>
+                    <li>Always write descriptive link text instead of generic phrases like "click here".</li>
+                </ul>
+            </div>
+
+            <!-- CHAPTER NAVIGATION -->
+            <nav class="chapter-nav">
+                <a href="ch03-text-formatting.html">← Chapter 3: Text &amp; Typography</a>
+                <a href="ch05-images-media.html">Chapter 5: Images &amp; Media →</a>
+            </nav>
+    
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Jethneil Joem Calayan — The Engineer's Codex</p>
+        <p class="version">Version: 041920260036</p>
+    </footer>
+
+</body>
+</html>

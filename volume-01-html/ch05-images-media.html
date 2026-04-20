@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 5: Images &amp; Media — The Engineer's Codex</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="vol1-style.css">
+</head>
+<body>
+
+    <header class="hero">
+        <h1>Chapter 5: Images &amp; Media</h1>
+        <p class="subtitle">Volume I: The Skeleton — HTML Essentials</p>
+        <p class="author">
+            <a href="index.html" class="back-link">← Back to Table of Contents</a>
+        </p>
+    </header>
+
+    <main class="bookshelf-section">
+        <div class="chapter-content">
+
+            <!-- INTRODUCTION -->
+            <h2>Introduction</h2>
+            <p>While text forms the structural foundation of the web, media—such as images, audio, and video—brings it to life. Unlike text, which is written directly inside the HTML file, media files are stored separately and <strong>embedded</strong> into the page using specific tags.</p>
+            <p>In this chapter, you will learn how to properly insert images using the <code>&lt;img&gt;</code> tag, why the <code>alt</code> attribute is critical for engineering a professional website, and how to embed modern audio and video players natively without relying on third-party plugins.</p>
+
+            <div class="note-box">
+                <span class="note-label">💡 Engineering Note</span>
+                <p>The <code>&lt;img&gt;</code> tag is what we call an <strong>empty element</strong> (or self-closing tag). Because it embeds an external file rather than wrapping around text, it does not have a closing tag like <code>&lt;/img&gt;</code>.</p>
+            </div>
+
+            <!-- KEY CONCEPTS TABLE -->
+            <h2>The Image Tag &amp; Attributes</h2>
+            <p>To display an image, you only need the <code>&lt;img&gt;</code> tag and two mandatory attributes:</p>
+
+            <table class="concept-table">
+                <thead>
+                    <tr>
+                        <th>Attribute</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>src</code></td>
+                        <td>"Source". The path or URL to the image file. This tells the browser where to find the picture.</td>
+                        <td><code>src="assets/logo.png"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>alt</code></td>
+                        <td>"Alternative text". A text description of the image used for screen readers and SEO.</td>
+                        <td><code>alt="Allegro MicroSystems Logo"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>width</code> / <code>height</code></td>
+                        <td>Sets the dimensions of the image in pixels (without adding "px"). Helps prevent layout shifts.</td>
+                        <td><code>width="500" height="300"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>loading</code></td>
+                        <td>Can be set to <code>lazy</code> to defer loading the image until the user scrolls near it (improves performance).</td>
+                        <td><code>loading="lazy"</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- SECTION: EMBEDDING IMAGES -->
+            <h2>Embedding Images</h2>
+            <p>Here is how you put it all together to display an image properly. Notice how we include both <code>src</code> and <code>alt</code> text.</p>
+
+            <div class="code-block"><span class="comment">&lt;!-- Basic image embed --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"assets/profile-photo.jpg"</span> <span class="attr">alt</span>=<span class="value">"Portrait of Jethneil Joem Calayan"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- Image with dimensions and lazy loading for better performance --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"assets/yield-chart.png"</span> 
+     <span class="attr">alt</span>=<span class="value">"Bar chart showing 98% yield improvement"</span> 
+     <span class="attr">width</span>=<span class="value">"800"</span> 
+     <span class="attr">height</span>=<span class="value">"400"</span> 
+     <span class="attr">loading</span>=<span class="value">"lazy"</span><span class="tag">&gt;</span></div>
+
+            <!-- SECTION: IMAGE FORMATS -->
+            <h2>Choosing the Right Image Format</h2>
+            <p>As a software engineer, choosing the correct file format is crucial for site speed and performance. Here is a quick guide on what format to use and when:</p>
+
+            <table class="concept-table">
+                <thead>
+                    <tr>
+                        <th>Format</th>
+                        <th>Best Used For</th>
+                        <th>Characteristics</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>JPEG / JPG</strong></td>
+                        <td>Photographs and complex images with many colors.</td>
+                        <td>Lossy compression (loses quality to save file size). No transparency.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PNG</strong></td>
+                        <td>Graphics, logos, and screenshots.</td>
+                        <td>Lossless compression (high quality). Supports transparent backgrounds.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SVG</strong></td>
+                        <td>Icons, logos, and simple illustrations.</td>
+                        <td>Vector-based (math equations, not pixels). Scales infinitely without losing quality.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>WebP</strong></td>
+                        <td>Modern web images (both photos and graphics).</td>
+                        <td>Excellent compression (smaller files than JPEG/PNG). Supported by all modern browsers.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>GIF</strong></td>
+                        <td>Simple, short animations.</td>
+                        <td>Limited to 256 colors. Not recommended for static images anymore.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- SECTION: THE ALT ATTRIBUTE -->
+            <h2>Accessibility: The Golden Rule of <code>alt</code> Text</h2>
+            <p>The <code>alt</code> attribute is not optional if you want to build professional websites. It serves three critical purposes:</p>
+            <ul>
+                <li><strong>Screen Readers:</strong> Visually impaired users will hear the <code>alt</code> text read aloud.</li>
+                <li><strong>Broken Links:</strong> If the image file fails to load, the browser will display the <code>alt</code> text in its place so the user still understands what should be there.</li>
+                <li><strong>SEO:</strong> Search engines like Google cannot "see" images, so they read the <code>alt</code> text to index your content.</li>
+            </ul>
+
+            <div class="code-block"><span class="comment">&lt;!-- ❌ BAD: Filename used as alt text (unhelpful to screen readers) --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"img4829.jpg"</span> <span class="attr">alt</span>=<span class="value">"img4829.jpg"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- ❌ BAD: Redundant phrases --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"dog.jpg"</span> <span class="attr">alt</span>=<span class="value">"A picture of a dog"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- ✅ GOOD: Descriptive and concise --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"dog.jpg"</span> <span class="attr">alt</span>=<span class="value">"A golden retriever catching a frisbee in the park"</span><span class="tag">&gt;</span></div>
+
+            <div class="note-box">
+                <span class="note-label">Pro Tip</span>
+                <p>If an image is purely decorative (like a background pattern or a swirly line) and adds no meaning to the content, you should leave the alt attribute completely empty like this: <code>alt=""</code>. This tells screen readers to safely skip over it.</p>
+            </div>
+
+            <!-- SECTION: AUDIO AND VIDEO -->
+            <h2>Embedding Audio and Video</h2>
+            <p>HTML5 introduced native tags for embedding media without needing third-party plugins like Flash. The <code>&lt;audio&gt;</code> and <code>&lt;video&gt;</code> tags work very similarly to the image tag, but they require a closing tag and often use the <code>controls</code> attribute to display play/pause buttons.</p>
+
+            <div class="code-block"><span class="comment">&lt;!-- Embedding an Audio file --&gt;</span>
+<span class="tag">&lt;audio</span> <span class="attr">controls</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="value">"assets/podcast-interview.mp3"</span> <span class="attr">type</span>=<span class="value">"audio/mpeg"</span><span class="tag">&gt;</span>
+    Your browser does not support the audio element.
+<span class="tag">&lt;/audio&gt;</span>
+
+<span class="comment">&lt;!-- Embedding a Video file --&gt;</span>
+<span class="tag">&lt;video</span> <span class="attr">controls</span> <span class="attr">width</span>=<span class="value">"800"</span> <span class="attr">poster</span>=<span class="value">"assets/video-thumbnail.jpg"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="value">"assets/demo-reel.mp4"</span> <span class="attr">type</span>=<span class="value">"video/mp4"</span><span class="tag">&gt;</span>
+    Your browser does not support the video tag.
+<span class="tag">&lt;/video&gt;</span></div>
+
+            <!-- SUMMARY -->
+            <div class="summary-box">
+                <h3>📋 Chapter Summary</h3>
+                <ul>
+                    <li>The <code>&lt;img&gt;</code> tag is self-closing and embeds external image files.</li>
+                    <li>Always include the <code>src</code> (where the file is) and <code>alt</code> (what the image is) attributes.</li>
+                    <li>Use JPEG for photos, PNG for graphics with transparency, and SVG for scalable logos.</li>
+                    <li>Write descriptive <code>alt</code> text for accessibility, but leave it blank (<code>alt=""</code>) for purely decorative images.</li>
+                    <li>Use <code>&lt;audio&gt;</code> and <code>&lt;video&gt;</code> tags with the <code>controls</code> attribute to embed native media players.</li>
+                </ul>
+            </div>
+
+            <!-- CHAPTER NAVIGATION -->
+            <nav class="chapter-nav">
+                <a href="ch04-links-navigation.html">← Chapter 4: Links &amp; Navigation</a>
+                <a href="ch06-tables-lists.html">Chapter 6: Tables &amp; Lists →</a>
+            </nav>
+    
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Jethneil Joem Calayan — The Engineer's Codex</p>
+        <p class="version">Version: 041920260036</p>
+    </footer>
+
+</body>
+</html>
