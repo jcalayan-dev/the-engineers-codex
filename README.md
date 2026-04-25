@@ -6,7 +6,8 @@
 
 **Author:** Jethneil Joem Calayan  
 **Status:** 🟢 Active Development  
-**Current Focus:** Volume I — HTML
+**Current Focus:** Volume II — CSS
+**Latest Version:** 041820261802
 
 ---
 
@@ -26,7 +27,7 @@ The entire project is built using only HTML and CSS to demonstrate mastery of we
     ├── style.css                        # Global Book Styling
     ├── README.md                        # This File
     │
-    ├── /volume-01-html/                 # 🟢 NOW
+    ├── /volume-01-html/                 # 🟢 VOLUME I: THE SKELETON (Complete)
     │   ├── index.html                   #    Volume I Table of Contents
     │   ├── ch01-document-structure.html
     │   ├── ch02-semantic-tags.html
@@ -37,9 +38,17 @@ The entire project is built using only HTML and CSS to demonstrate mastery of we
     │   ├── ch07-forms-inputs.html
     │   └── /assets/                     #    Images & Diagrams for HTML
     │
-    ├── /volume-02-css/                  # 🔵 FUTURE
-    │   ├── index.html
-    │   └── /assets/
+    ├── /volume-02-css/                  # 🟡 VOLUME II: THE SKIN (In Progress)
+    │   ├── index.html                   #    Volume II Table of Contents
+    |   ├── vol2-style.css               #    CSS Lesson Styles (Volume-specific)
+    │   ├── ch01-css-rulebook.html       #    Selectors, Cascade, & Specificity
+    │   ├── ch02-box-model.html          #    Margins, Borders, Padding, & Sizing
+    │   ├── ch03-colors-typography.html  #    Visual Aesthetics & Web Fonts
+    │   ├── ch04-flexbox-layout.html     #    1D Layout Engineering
+    │   ├── ch05-css-grid.html           #    2D Architecture & Grid Placement
+    │   ├── ch06-responsive-design.html  #    Media Queries & Fluid Typography
+    │   ├── ch07-animations-polish.html  #    Transitions & Transformations
+    │   └── /assets/                     #    Layout & Box Model Diagrams
     │
     ├── /volume-03-java/                 # 🔵 FUTURE
     │   ├── index.html
@@ -59,7 +68,6 @@ The entire project is built using only HTML and CSS to demonstrate mastery of we
     │
     └── /shared-assets/                  # Shared icons, fonts, cover images
         └── /images/
-
 ---
 
 ## 📚 Volume Guide
@@ -75,7 +83,7 @@ The entire project is built using only HTML and CSS to demonstrate mastery of we
 
 ---
 
-## 📖 Volume I: The Skeleton (HTML) — 🟢 NOW
+## 📖 Volume I: The Skeleton (HTML) — 🟢 COMPLETED
 
 ### Chapters
 
@@ -98,18 +106,17 @@ The entire project is built using only HTML and CSS to demonstrate mastery of we
 
 ---
 
-## 📖 Volume II: The Skin (CSS) — 🔵 FUTURE
+## 📖 Volume II: The Skin (CSS) — 🟡 NOW
 
-| Ch | Title                              |
-|----|------------------------------------|
-| 1  | The Box Model                      |
-| 2  | Colors, Fonts & Typography         |
-| 3  | Flexbox Layout                     |
-| 4  | CSS Grid Layout                    |
-| 5  | Responsive Design & Media Queries  |
-| 6  | Animations & Transitions           |
-| 7  | CSS Variables & Theming            |
-
+| Ch | Title | Description |
+|----|-------|-------------|
+| 1 | **The CSS Rulebook** | Understanding Selectors, Declarations, and the power of the Cascade. |
+| 2 | **The Box Model** | Engineering margins, borders, padding, and content sizing. |
+| 3 | **Colors & Typography** | Mastering Hex codes, RGB, Gradients, and professional web fonts. |
+| 4 | **Flexbox Layout** | Building one-dimensional responsive layouts for modern devices. |
+| 5 | **CSS Grid Layout** | Advanced two-dimensional page architecture and placement logic. |
+| 6 | **Responsive Design** | Media Queries and Fluid Typography for a mobile-first experience. |
+| 7 | **Animations & Polish** | Adding transitions and transformations for a premium user feel. |
 ---
 
 ## 📖 Volume III: The Blueprint (Java) — 🔵 FUTURE
@@ -172,11 +179,11 @@ The entire project is built using only HTML and CSS to demonstrate mastery of we
 
 | Phase | Task                                                 | Status          |
 |-------|------------------------------------------------------|-----------------|
-| 1     | Initialize GitHub repository and folder structure    | 🔲 Not Started  |
-| 2     | Build the Bookshelf landing page (index.html)        | 🔲 Not Started  |
-| 3     | Write Volume I HTML chapters (1–7)                   | 🔲 Not Started  |
-| 4     | Enable GitHub Pages for public hosting               | 🔲 Not Started  |
-| 5     | Begin Volume II (CSS)                                | 🔲 Not Started  |
+| 1     | Initialize GitHub repository and folder structure    | ✅ Done         |
+| 2     | Build the Bookshelf landing page (index.html)        | ✅ Done         |
+| 3     | Write Volume I HTML chapters (1–7)                   | ✅ Done         |
+| 4     | Enable GitHub Pages for public hosting               | ✅ Done         |
+| 5     | Begin Volume II (CSS)                                | 🟡 In Progress  |
 | 6     | Expand with Java, Python, C/C++, SQL                 | 🔲 Not Started  |
 
 ---
