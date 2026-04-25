@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 6: Responsive Design — The Engineer's Codex</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="vol2-style.css">
+</head>
+<body>
+
+    <header class="hero" style="background: linear-gradient(135deg, #1a2a6c, #264de4);">
+        <h1>Chapter 6: Responsive Design</h1>
+        <p class="subtitle">Volume II: The Skin — Media Queries and Fluid Architectures</p>
+        <p class="author">
+            <a href="index.html" class="back-link" style="color: #ffffff; text-decoration: underline;">← Back to Table of Contents</a>
+        </p>
+    </header>
+
+    <main class="bookshelf-section">
+        <div class="chapter-content">
+
+            <!-- 1. INTRODUCTION -->
+            <h2>Introduction</h2>
+            <p>In modern web engineering, the "Standard Screen Size" no longer exists. A professional application must be functional on a 4-inch smartphone screen just as well as on a 32-inch desktop monitor. <strong>Responsive Design</strong> is the methodology of using CSS to create flexible layouts that automatically adjust to the user's environment.</p>
+            <p>In this chapter, we will master the <strong>Media Query</strong>—a conditional logic statement that tells the browser: "If the screen is smaller (or larger) than $X$, apply these specific styles." We will also discuss the <strong>Mobile-First</strong> approach, which ensures your site is performant on the most constrained devices before scaling up to larger viewports.</p>
+
+            <!-- 2. KEY CONCEPTS -->
+            <h2>Key Concepts</h2>
+            <table class="concept-table">
+                <thead>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Definition</th>
+                        <th>Engineering Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Viewport</strong></td>
+                        <td>The visible area of a web page on a device.</td>
+                        <td>The "Canvas" boundary.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Breakpoint</strong></td>
+                        <td>The specific pixel width where the layout changes.</td>
+                        <td>The threshold for architectural shifts.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Media Query</strong></td>
+                        <td>A CSS block that triggers styles based on device width.</td>
+                        <td>The "If/Then" logic of CSS.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mobile-First</strong></td>
+                        <td>Building for small screens first, then adding complexity.</td>
+                        <td>Ensures performance and core functionality for all.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- SECTION 1: THE MEDIA QUERY -->
+            <h2>1. The Logic of Media Queries</h2>
+            <p>Media queries allow you to create conditional CSS. The most common type is the <code>min-width</code> query. As an engineer, think of this as a logic gate for your visual styles.</p>
+
+            <div class="code-block"><span class="comment">/* Base styles (Mobile) */</span>
+<span class="tag">body</span> { <span class="attr">background-color</span>: <span class="value">white</span>; }
+
+<span class="comment">/* Triggered when screen is 768px or wider (Tablets/Desktops) */</span>
+<span class="tag">@media</span> (min-width: 768px) {
+    <span class="tag">body</span> {
+        <span class="attr">background-color</span>: <span class="value">#f0f4f8</span>;
+    }
+    <span class="tag">.sidebar</span> {
+        <span class="attr">display</span>: <span class="value">block</span>;
+    }
+}</div>
+
+            <!-- SECTION 2: MOBILE-FIRST STRATEGY -->
+            <h2>2. The Mobile-First Standard</h2>
+            <p>Professional engineers write their "Global" CSS for mobile devices first (without a media query). Then, they use <code>@media (min-width: ...)</code> to <strong>add</strong> complexity as the screen gets larger. This results in cleaner code and faster loading times.</p>
+
+            <div style="background: #16213e; color: #38bdf8; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <p><strong>Common Industry Breakpoints:</strong></p>
+                <ul>
+                    <li><strong>480px:</strong> Mobile Landscapes</li>
+                    <li><strong>768px:</strong> Tablets (Transition to multi-column)</li>
+                    <li><strong>1024px:</strong> Laptops and standard desktops</li>
+                    <li><strong>1200px+:</strong> Large High-Res Monitors</li>
+                </ul>
+            </div>
+
+            <!-- SECTION 3: VISUAL SANDBOX -->
+            <h2>3. Visual Sandbox: The Responsive Indicator</h2>
+            <p>Try resizing your browser window (or rotating your phone). The box below will change its color and message based on the current viewport width using Media Query logic.</p>
+
+            <style>
+                .responsive-box {
+                    padding: 30px;
+                    border-radius: 8px;
+                    text-align: center;
+                    font-weight: bold;
+                    transition: all 0.5s ease;
+                    background-color: #e94560; /* Mobile color */
+                    color: white;
+                }
+                .responsive-box::after { content: "VIEWPORT: MOBILE (< 768px)"; }
+
+                @media (min-width: 768px) {
+                    .responsive-box { background-color: #38bdf8; color: #0f172a; }
+                    .responsive-box::after { content: "VIEWPORT: TABLET/DESKTOP (>= 768px)"; }
+                }
+            </style>
+
+            <div class="sandbox">
+                <div class="responsive-box"></div>
+                <p style="font-size: 0.8rem; color: #8892b0; margin-top: 10px; font-style: italic;">Note: On a desktop, drag the edge of your browser window to see the change.</p>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="summary-box">
+                <h3>📋 Chapter Summary</h3>
+                <ul>
+                    <li><strong>Responsive Design</strong> makes content accessible across all device types.</li>
+                    <li>The <strong>Meta Viewport Tag</strong> in your HTML <code>&lt;head&gt;</code> is required for media queries to function.</li>
+                    <li>Use <strong>Media Queries</strong> to apply conditional CSS based on screen width thresholds.</li>
+                    <li>Adopt a <strong>Mobile-First</strong> approach to ensure a fast, functional core experience.</li>
+                    <li>Combine <strong>Flexbox/Grid</strong> with Media Queries to create fluid, adaptive architectures.</li>
+                </ul>
+            </div>
+
+            <!-- CHAPTER NAVIGATION -->
+            <nav class="chapter-nav">
+                <a href="ch05-css-grid.html">← Chapter 5: CSS Grid Layout</a>
+                <a href="ch07-animations-polish.html">Chapter 7: Animations &amp; Polish →</a>
+            </nav>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Jethneil Joem Calayan — The Engineer's Codex</p>
+        <p class="version">Version: 042520260815</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 2: The Box Model — The Engineer's Codex</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="vol2-style.css">
+</head>
+<body>
+
+    <header class="hero" style="background: linear-gradient(135deg, #1a2a6c, #264de4);">
+        <h1>Chapter 2: The Box Model</h1>
+        <p class="subtitle">Volume II: The Skin — Dimensions, Spacing, and Sizing Logic</p>
+        <p class="author">
+            <a href="index.html" class="back-link" style="color: #ffffff; text-decoration: underline;">← Back to Table of Contents</a>
+        </p>
+    </header>
+
+    <main class="bookshelf-section">
+        <div class="chapter-content">
+
+            <!-- 1. INTRODUCTION -->
+            <h2>Introduction</h2>
+            <p>In CSS, every single element on a web page—from a simple link to a complex navigation bar—is treated as a rectangular box. The <strong>CSS Box Model</strong> is the mathematical formula that determines the total space an element occupies on the screen. It is the foundation of all web layouts.</p>
+            <p>When you set the width or height of an element, you aren't just setting the size of the content; you are interacting with layers of spacing and borders. In this chapter, we will break down the four components of the box model and explore the "Box-Sizing" logic that professional engineers use to keep their layouts predictable and robust.</p>
+
+            <!-- 2. KEY CONCEPTS -->
+            <h2>Key Concepts</h2>
+            <table class="concept-table">
+                <thead>
+                    <tr>
+                        <th>Layer</th>
+                        <th>Definition</th>
+                        <th>Engineering Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Content</strong></td>
+                        <td>The inner-most area where text and images reside.</td>
+                        <td>The payload of the element.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Padding</strong></td>
+                        <td>The transparent space between the content and the border.</td>
+                        <td>Internal breathing room.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Border</strong></td>
+                        <td>A line that wraps around the padding and content.</td>
+                        <td>The structural boundary.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Margin</strong></td>
+                        <td>The transparent space outside the border.</td>
+                        <td>External spacing between elements.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- SECTION 1: VISUALIZING THE LAYERS -->
+            <h2>1. Visualizing the Box Model</h2>
+            <p>To engineer a layout correctly, you must visualize how these layers stack. Every layer adds to the total footprint of the element.</p>
+
+            <div class="sandbox" style="border: 2px dashed #264de4; padding: 40px; text-align: center; background: #f8fafc; border-radius: 8px;">
+                <div style="margin: 20px; border: 5px solid #264de4; padding: 20px; background: #38bdf8; color: white; font-weight: bold; font-family: sans-serif; font-size: 0.8rem;">
+                    MARGIN (Space Outside)
+                    <div style="border: 2px solid white; padding: 10px; background: #0f172a;">
+                        BORDER (The Edge)
+                        <div style="background: rgba(255,255,255,0.2); padding: 10px;">
+                            PADDING (Internal Space)
+                            <div style="background: white; color: #0f172a; padding: 10px; border-radius: 2px;">
+                                CONTENT (Text/Image)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p style="color: #64748b; font-size: 0.8rem; margin-top: 10px; font-style: italic;">Fig 2.1: The nested structure of the CSS Box Model.</p>
+            </div>
+
+            <!-- SECTION 2: THE CALCULATION -->
+            <h2>2. The Mathematics of Width</h2>
+            <p>By default, the <code>width</code> property in CSS only sets the width of the <strong>Content</strong> area. To find the <strong>Total Width</strong> of an element on the screen, you must use this equation:</p>
+
+            <p style="text-align: center; font-family: monospace; background: #16213e; color: #69f0ae; padding: 15px; border-radius: 6px;">
+                Total Width = Left Margin + Left Border + Left Padding + Width + Right Padding + Right Border + Right Margin
+            </p>
+
+            <div class="note-box">
+                <span class="note-label">⚠️ The Layout Problem</span>
+                <p>If you have a container that is 500px wide and you give it a 20px padding and a 5px border, the total width becomes <strong>550px</strong>. This often causes elements to "overflow" or break out of their containers unexpectedly.</p>
+            </div>
+
+            <!-- SECTION 3: BOX-SIZING BORDER-BOX -->
+            <h2>3. Box-Sizing: The Professional Reset</h2>
+            <p>To fix the calculation problem, modern CSS uses the <code>box-sizing</code> property. Most Senior Engineers apply a "Global Reset" to their projects using <code>border-box</code>. This tells the browser that the width and height should include the padding and border.</p>
+
+            <div class="code-block"><span class="comment">/* The industry standard "Global Reset" */</span>
+<span class="tag">*</span> {
+    <span class="attr">box-sizing</span>: <span class="value">border-box</span>;
+}</div>
+
+            <p>With <code>border-box</code>, if you set <code>width: 500px</code>, the element will <strong>always</strong> be 500px wide, regardless of how much padding or border you add. The browser automatically shrinks the content area to fit.</p>
+
+            <!-- SUMMARY -->
+            <div class="summary-box">
+                <h3>📋 Chapter Summary</h3>
+                <ul>
+                    <li>Every HTML element is a rectangular box with four layers: Content, Padding, Border, and Margin.</li>
+                    <li><strong>Padding</strong> is space <em>inside</em> the border; <strong>Margin</strong> is space <em>outside</em>.</li>
+                    <li>By default, padding and borders increase the total size of an element.</li>
+                    <li>Use <code>box-sizing: border-box;</code> to make element dimensions predictable and easier to calculate.</li>
+                    <li>Margins can "collapse" (overlap) vertically between adjacent elements—a concept we will explore in the layout chapters.</li>
+                </ul>
+            </div>
+
+            <!-- CHAPTER NAVIGATION -->
+            <nav class="chapter-nav">
+                <a href="ch01-css-rulebook.html">← Chapter 1: The CSS Rulebook</a>
+                <a href="ch03-colors-typography.html">Chapter 3: Colors &amp; Typography →</a>
+            </nav>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Jethneil Joem Calayan — The Engineer's Codex</p>
+        <p class="version">Version: 041920260036</p>
+    </footer>
+
+</body>
+</html>

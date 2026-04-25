@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 4: Flexbox Layout — The Engineer's Codex</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="vol2-style.css">
+</head>
+<body>
+
+    <header class="hero" style="background: linear-gradient(135deg, #1a2a6c, #264de4);">
+        <h1>Chapter 4: Flexbox Layout</h1>
+        <p class="subtitle">Volume II: The Skin — 1D Layout Engineering and Alignment</p>
+        <p class="author">
+            <a href="index.html" class="back-link" style="color: #ffffff; text-decoration: underline;">← Back to Table of Contents</a>
+        </p>
+    </header>
+
+    <main class="bookshelf-section">
+        <div class="chapter-content">
+
+            <!-- 1. INTRODUCTION -->
+            <h2>Introduction</h2>
+            <p>In the early days of web development, creating complex layouts was a major pain point for engineers. Modern CSS solved this with the <strong>Flexible Box Module</strong>, commonly known as <strong>Flexbox</strong>. Flexbox is a one-dimensional layout model that allows you to align items in rows or columns easily, automatically distributing extra space and handling different screen sizes with minimal code.</p>
+            <p>In this chapter, we will master the relationship between the <strong>Flex Container</strong> (the parent) and the <strong>Flex Items</strong> (the children). We will also explore the mathematical logic of the Main and Cross axes, which dictates how elements flow across the viewport.</p>
+
+            <!-- 2. KEY CONCEPTS -->
+            <h2>Key Concepts</h2>
+            <table class="concept-table">
+                <thead>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Definition</th>
+                        <th>Engineering Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Flex Container</strong></td>
+                        <td>The parent element where <code>display: flex</code> is applied.</td>
+                        <td>The structural boundary for the layout.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Flex Item</strong></td>
+                        <td>Any direct child of a flex container.</td>
+                        <td>The individual component to be aligned.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Main Axis</strong></td>
+                        <td>The primary direction items are laid out (default: horizontal).</td>
+                        <td>The "Flow" direction of the data.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cross Axis</strong></td>
+                        <td>The axis perpendicular to the Main Axis (default: vertical).</td>
+                        <td>The "Alignment" direction.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- SECTION 1: THE FLEX AXIS LOGIC -->
+            <h2>1. The Mathematics of the Axis</h2>
+            <p>Flexbox operates on two axes. Understanding which one you are controlling is the key to predictable layouts. When you change the <code>flex-direction</code>, the axes rotate accordingly.</p>
+
+            <div style="background: #16213e; color: #38bdf8; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <p><strong>Main Axis Configuration:</strong></p>
+                $$Main Axis \perp Cross Axis$$
+                <p style="font-size: 0.9rem; margin-top: 10px; color: #c0c8e0;">If <code>flex-direction: row</code>, the Main Axis is $x$ and the Cross Axis is $y$.<br>
+                If <code>flex-direction: column</code>, the Main Axis is $y$ and the Cross Axis is $x$.</p>
+            </div>
+
+            <!-- SECTION 2: CONTAINER PROPERTIES -->
+            <h2>2. The Flex Container: Controlling the Flow</h2>
+            <p>To start using Flexbox, you must activate the container. From there, you have three primary properties to engineer the layout:</p>
+
+            <div class="code-block"><span class="comment">/* 1. Activation */</span>
+<span class="tag">.container</span> {
+    <span class="attr">display</span>: <span class="value">flex</span>;
+    <span class="attr">flex-direction</span>: <span class="value">row</span>;      <span class="comment">/* Options: row, column */</span>
+}
+
+<span class="comment">/* 2. Alignment on the Main Axis */</span>
+<span class="tag">.container</span> {
+    <span class="attr">justify-content</span>: <span class="value">space-between</span>; <span class="comment">/* center, flex-start, flex-end, space-around */</span>
+}
+
+<span class="comment">/* 3. Alignment on the Cross Axis */</span>
+<span class="tag">.container</span> {
+    <span class="attr">align-items</span>: <span class="value">center</span>;      <span class="comment">/* stretch, flex-start, flex-end */</span>
+}</div>
+
+            <!-- SECTION 3: VISUAL SANDBOX -->
+            <h2>3. Visual Sandbox: Alignment in Action</h2>
+            <p>Below is a Flex Container set to <code>justify-content: space-around</code> and <code>align-items: center</code>. Notice how the items distribute space automatically.</p>
+
+            <div class="sandbox" style="display: flex; justify-content: space-around; align-items: center; height: 150px; background: #0f172a; border: 2px dashed #264de4; border-radius: 8px;">
+                <div style="width: 60px; height: 60px; background: #38bdf8; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">1</div>
+                <div style="width: 60px; height: 60px; background: #264de4; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">2</div>
+                <div style="width: 60px; height: 60px; background: #e94560; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">3</div>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="summary-box">
+                <h3>📋 Chapter Summary</h3>
+                <ul>
+                    <li><strong>Flexbox</strong> is a $1D$ layout tool for managing space in rows or columns.</li>
+                    <li>The <strong>Flex Container</strong> controls the overall alignment logic.</li>
+                    <li><code>justify-content</code> targets the <strong>Main Axis</strong>.</li>
+                    <li><code>align-items</code> targets the <strong>Cross Axis</strong>.</li>
+                    <li>Using <code>flex-direction: column</code> is ideal for mobile-responsive stacking.</li>
+                    <li>Flexbox makes centering elements—historically a difficult task—as simple as two lines of code.</li>
+                </ul>
+            </div>
+
+            <!-- CHAPTER NAVIGATION -->
+            <nav class="chapter-nav">
+                <a href="ch03-colors-typography.html">← Chapter 3: Colors &amp; Typography</a>
+                <a href="ch05-css-grid.html">Chapter 5: CSS Grid Layout →</a>
+            </nav>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Jethneil Joem Calayan — The Engineer's Codex</p>
+        <p class="version">Version: 042520260710</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 1: The CSS Rulebook — The Engineer's Codex</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="vol2-style.css">
+</head>
+<body>
+
+    <header class="hero" style="background: linear-gradient(135deg, #1a2a6c, #264de4);">
+        <h1>Chapter 1: The CSS Rulebook</h1>
+        <p class="subtitle">Volume II: The Skin — Selectors, Declarations, and the Cascade</p>
+        <p class="author">
+            <a href="index.html" class="back-link" style="color: #ffffff; text-decoration: underline;">← Back to Table of Contents</a>
+        </p>
+    </header>
+
+    <main class="bookshelf-section">
+        <div class="chapter-content">
+
+            <!-- 1. INTRODUCTION -->
+            <h2>Introduction</h2>
+            <p>If HTML is the structure of our application, CSS (Cascading Style Sheets) is the engine that drives the visual presentation. Unlike HTML, which is a markup language used for description, CSS is a <strong>rule-based language</strong>. You define groups of styles that should be applied to specific elements or groups of elements on your web page.</p>
+            <p>In this chapter, we will break down the anatomy of a CSS rule set, explore how to target elements using selectors, and understand the "Cascading" logic that determines which rules win when multiple styles conflict. Mastering these mechanics is the first step toward visual engineering.</p>
+
+            <!-- 2. KEY CONCEPTS -->
+            <h2>Key Concepts</h2>
+            <table class="concept-table">
+                <thead>
+                    <tr>
+                        <th>Term</th>
+                        <th>Definition</th>
+                        <th>Analogy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Selector</strong></td>
+                        <td>The "Target". Tells the browser which HTML element to style.</td>
+                        <td>The address on an envelope.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Declaration</strong></td>
+                        <td>A single setting consisting of a <strong>Property</strong> and a <strong>Value</strong>.</td>
+                        <td>An instruction (e.g., "Paint the door red").</td>
+                    </tr>
+                    <tr>
+                        <td><strong>The Cascade</strong></td>
+                        <td>The logic used to resolve conflicts when multiple rules apply to one element.</td>
+                        <td>A hierarchy of command.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Specificity</strong></td>
+                        <td>A weight assigned to a selector that determines its "importance" over others.</td>
+                        <td>A rank or priority level.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- SECTION 1: ANATOMY OF A RULE -->
+            <h2>1. Anatomy of a CSS Rule Set</h2>
+            <p>A CSS rule set consists of a <strong>Selector</strong> followed by a <strong>Declaration Block</strong> wrapped in curly braces <code>{}</code>. Each declaration inside the block must end with a semicolon <code>;</code>.</p>
+
+            <div class="code-block"><span class="comment">/* Selector */</span>
+<span class="tag">h1</span> {
+    <span class="attr">color</span>: <span class="value">white</span>;        <span class="comment">/* Property: Value; */</span>
+    <span class="attr">font-size</span>: <span class="value">24px</span>;    <span class="comment">/* Declaration */</span>
+}</div>
+
+            <!-- SECTION 2: SELECTORS -->
+            <h2>2. Targeting Elements: Common Selectors</h2>
+            <p>To apply styles, you must first "select" the element. As a Senior Engineer, you should use the most efficient selector for the job to keep your code clean.</p>
+
+            <ul>
+                <li><strong>Element Selector:</strong> Targets all instances of a specific HTML tag (e.g., <code>p</code>, <code>h1</code>).</li>
+                <li><strong>Class Selector:</strong> Targets elements with a specific class attribute. Indicated by a dot (<code>.</code>).</li>
+                <li><strong>ID Selector:</strong> Targets a single unique element. Indicated by a hash (<code>#</code>).</li>
+            </ul>
+
+            <div class="code-block"><span class="comment">/* Targets all paragraphs */</span>
+<span class="tag">p</span> { <span class="attr">line-height</span>: <span class="value">1.6</span>; }
+
+<span class="comment">/* Targets any element with class="btn" */</span>
+<span class="tag">.btn</span> { <span class="attr">background-color</span>: <span class="value">blue</span>; }
+
+<span class="comment">/* Targets the unique element with id="main-nav" */</span>
+<span class="tag">#main-nav</span> { <span class="attr">border-bottom</span>: <span class="value">1px solid black</span>; }</div>
+
+            <!-- SECTION 3: THE CASCADE -->
+            <h2>3. The "Cascading" Logic</h2>
+            <p>The "C" in CSS stands for <strong>Cascading</strong>. This means the order of rules matters. If two rules have the same "weight," the one written <strong>last</strong> in the stylesheet will be the one the browser follows.</p>
+
+            <div class="note-box">
+                <span class="note-label">💡 Engineering Principle: Source Order</span>
+                <p>Always place your most general styles (like global resets) at the top of your CSS file and your most specific styles (like unique page sections) at the bottom. This allows the cascade to work for you, not against you.</p>
+            </div>
+
+            <!-- SECTION 4: SPECIFICITY -->
+            <h2>4. Specificity: The Priority System</h2>
+            <p>When different selectors target the same element, the browser uses <strong>Specificity</strong> to decide which rule wins. Specificity is calculated as a score:</p>
+
+            <table class="concept-table">
+                <thead>
+                    <tr>
+                        <th>Selector Type</th>
+                        <th>Priority Level</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Inline Styles</td><td>Highest (1000)</td><td><code>style="..."</code></td></tr>
+                    <tr><td>IDs</td><td>High (100)</td><td><code>#header</code></td></tr>
+                    <tr><td>Classes / Attributes</td><td>Medium (10)</td><td><code>.active</code></td></tr>
+                    <tr><td>Elements</td><td>Low (1)</td><td><code>h1</code></td></tr>
+                </tbody>
+            </table>
+
+            <div class="code-block"><span class="comment">/* This rule has a specificity of 1 (Element) */</span>
+<span class="tag">p</span> { <span class="attr">color</span>: <span class="value">red</span>; }
+
+<span class="comment">/* This rule has a specificity of 10 (Class) and WINS */</span>
+<span class="tag">.main-text</span> { <span class="attr">color</span>: <span class="value">blue</span>; }</div>
+
+            <!-- SUMMARY -->
+            <div class="summary-box">
+                <h3>📋 Chapter Summary</h3>
+                <ul>
+                    <li>A <strong>Rule Set</strong> includes a Selector and a Declaration Block.</li>
+                    <li>Use <strong>Selectors</strong> to target HTML elements by tag, class, or ID.</li>
+                    <li><strong>The Cascade</strong> ensures that if weights are equal, the last rule written wins.</li>
+                    <li><strong>Specificity</strong> acts as a tie-breaker, giving priority to IDs over Classes, and Classes over Elements.</li>
+                    <li>Professional engineers favor <strong>Classes</strong> for reusable styling and reserve <strong>IDs</strong> for unique components.</li>
+                </ul>
+            </div>
+
+            <!-- CHAPTER NAVIGATION -->
+            <nav class="chapter-nav">
+                <a href="index.html">← Back to TOC</a>
+                <a href="ch02-box-model.html">Chapter 2: The Box Model →</a>
+            </nav>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Jethneil Joem Calayan — The Engineer's Codex</p>
+        <p class="version">Version: 041920260036</p>
+    </footer>
+
+</body>
+</html>

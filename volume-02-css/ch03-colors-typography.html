@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3: Colors &amp; Typography — The Engineer's Codex</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="vol2-style.css">
+</head>
+<body>
+
+    <header class="hero" style="background: linear-gradient(135deg, #1a2a6c, #264de4);">
+        <h1>Chapter 3: Colors &amp; Typography</h1>
+        <p class="subtitle">Volume II: The Skin — Visual Aesthetics and Information Design</p>
+        <p class="author">
+            <a href="index.html" class="back-link" style="color: #ffffff; text-decoration: underline;">← Back to Table of Contents</a>
+        </p>
+    </header>
+
+    <main class="bookshelf-section">
+        <div class="chapter-content">
+
+            <!-- 1. INTRODUCTION -->
+            <h2>Introduction</h2>
+            <p>If the Box Model defines the physical dimensions of our interface, <strong>Colors and Typography</strong> define its soul. In technical documentation and engineering dashboards, the primary goal of design is to reduce cognitive load. This means choosing colors that do not strain the eyes and typography that remains legible at various resolutions.</p>
+            <p>In this chapter, we will explore the mathematical ways CSS handles color—from Hexadecimal to functional RGB and HSL—and delve into the properties that allow us to engineer high-quality text layouts. We will also touch upon <strong>Accessibility (A11y)</strong>, ensuring our choices provide enough contrast for every user.</p>
+
+            <!-- 2. KEY CONCEPTS -->
+            <h2>Key Concepts</h2>
+            <table class="concept-table">
+                <thead>
+                    <tr>
+                        <th>Property / Concept</th>
+                        <th>Definition</th>
+                        <th>Engineering Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Hexadecimal</strong></td>
+                        <td>A 6-digit code (e.g., <code>#264de4</code>) representing Red, Green, and Blue.</td>
+                        <td>The industry standard for precise branding.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RGB / RGBA</strong></td>
+                        <td>Functional color definition with an optional Alpha (transparency) channel.</td>
+                        <td>Used for dynamic or translucent UI elements.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Font-Family</strong></td>
+                        <td>A prioritized list of fonts the browser should use.</td>
+                        <td>Defines the character and readability of text.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Line-Height</strong></td>
+                        <td>The vertical space between lines of text.</td>
+                        <td>Critical for preventing eye fatigue in long documentation.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- SECTION 1: THE COLOR SYSTEMS -->
+            <h2>1. Defining Color in CSS</h2>
+            <p>Engineers have three primary ways to define color. Each has its own use case depending on the level of precision or transparency required for the UI component.</p>
+
+            <div class="code-block"><span class="comment">/* 1. Hex Codes (Most Common) */</span>
+<span class="tag">h2</span> { <span class="attr">color</span>: <span class="value">#e94560</span>; }
+
+<span class="comment">/* 2. RGB (Red, Green, Blue) */</span>
+<span class="tag">div</span> { <span class="attr">background-color</span>: <span class="value">rgb(26, 42, 108)</span>; }
+
+<span class="comment">/* 3. RGBA (Adds Alpha/Transparency from 0.0 to 1.0) */</span>
+<span class="tag">header</span> { <span class="attr">background</span>: <span class="value">rgba(0, 0, 0, 0.5)</span>; }</div>
+
+            <div class="note-box">
+                <span class="note-label">🛡️ Accessibility: Contrast Ratios</span>
+                <p>Always ensure your text color has a high contrast ratio against its background. For technical manuals, a ratio of at least 4.5:1 is recommended to meet WCAG AA standards. Poor contrast makes your documentation unusable for users with visual impairments.</p>
+            </div>
+
+            <!-- SECTION 2: TYPOGRAPHY ENGINEERING -->
+            <h2>2. Engineering for Readability</h2>
+            <p>Typography is the art of arranging type. In CSS, we control the "mechanical" aspects of text to ensure it is legible on everything from a smartphone to a 4K monitor.</p>
+
+            <h3>Font Stacks</h3>
+            <p>We use a <strong>font stack</strong> to provide fallbacks. If the browser cannot find your first choice, it moves to the next until it finds a generic category like <code>serif</code> or <code>sans-serif</code>.</p>
+
+            <div class="code-block"><span class="comment">/* A professional technical font stack */</span>
+<span class="tag">body</span> {
+    <span class="attr">font-family</span>: <span class="value">'Segoe UI', Roboto, Helvetica, Arial, sans-serif</span>;
+}</div>
+
+            <h3>Relative Sizing ($rem$)</h3>
+            <p>Avoid using fixed pixels ($px$) for font sizes. Instead, use <strong>rem</strong> (root em). $1rem$ is typically equal to $16px$. Using relative units allows the entire interface to scale if a user changes their browser's default font size.</p>
+
+            <div class="code-block"><span class="tag">p</span> {
+    <span class="attr">font-size</span>: <span class="value">1.1rem</span>;      <span class="comment">/* approx 17.6px */</span>
+    <span class="attr">line-height</span>: <span class="value">1.6</span>;      <span class="comment">/* 160% of font size for breathing room */</span>
+    <span class="attr">margin-bottom</span>: <span class="value">1rem</span>;
+}</div>
+
+            <!-- SECTION 3: VISUAL SANDBOX -->
+            <h2>3. Visual Sandbox: The Palette</h2>
+            <p>Below is a demonstration of how color and type work together to create the "Engineer's Codex" branding.</p>
+
+            <div class="sandbox" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; padding: 30px;">
+                <div style="width: 100px; height: 100px; background: #1a2a6c; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.7rem; font-weight: bold;">#1a2a6c</div>
+                <div style="width: 100px; height: 100px; background: #264de4; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.7rem; font-weight: bold;">#264de4</div>
+                <div style="width: 100px; height: 100px; background: #38bdf8; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #0f172a; font-size: 0.7rem; font-weight: bold;">#38bdf8</div>
+                <div style="width: 100px; height: 100px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #0f172a; font-size: 0.7rem; font-weight: bold;">#f8fafc</div>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="summary-box">
+                <h3>📋 Chapter Summary</h3>
+                <ul>
+                    <li><strong>Color</strong> can be defined via Hex, RGB, or RGBA for transparency.</li>
+                    <li>Always prioritize <strong>Contrast</strong> to meet accessibility standards.</li>
+                    <li>Use <strong>Font Stacks</strong> to ensure your design doesn't break if a specific font is missing.</li>
+                    <li>Use <strong>rem</strong> units for font sizing to allow for responsive scaling.</li>
+                    <li>Proper <strong>line-height</strong> (typically 1.5 to 1.7) is essential for readability in long-form text.</li>
+                </ul>
+            </div>
+
+            <!-- CHAPTER NAVIGATION -->
+            <nav class="chapter-nav">
+                <a href="ch02-box-model.html">← Chapter 2: The Box Model</a>
+                <a href="ch04-flexbox-layout.html">Chapter 4: Flexbox Layout →</a>
+            </nav>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Jethneil Joem Calayan — The Engineer's Codex</p>
+        <p class="version">Version: 042520260652</p>
+    </footer>
+
+</body>
+</html>

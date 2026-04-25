@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 5: CSS Grid Layout — The Engineer's Codex</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="vol2-style.css">
+</head>
+<body>
+
+    <header class="hero" style="background: linear-gradient(135deg, #1a2a6c, #264de4);">
+        <h1>Chapter 5: CSS Grid Layout</h1>
+        <p class="subtitle">Volume II: The Skin — 2D Architecture and Precise Element Placement</p>
+        <p class="author">
+            <a href="index.html" class="back-link" style="color: #ffffff; text-decoration: underline;">← Back to Table of Contents</a>
+        </p>
+    </header>
+
+    <main class="bookshelf-section">
+        <div class="chapter-content">
+
+            <!-- 1. INTRODUCTION -->
+            <h2>Introduction</h2>
+            <p>If Flexbox is a "string" of elements, CSS Grid is a "blueprint." CSS Grid Layout is the most powerful layout system available in CSS. It is a 2-dimensional system, meaning it can handle both columns and rows at the same time, unlike Flexbox which is largely a 1-dimensional system.</p>
+            <p>In this chapter, we will learn how to define a grid coordinate system on a parent container and place child elements exactly where they belong. We will also explore the <strong>Fractional Unit ($fr$)</strong>, an engineering-focused unit that allows us to divide available space into proportional segments without complex percentage math.</p>
+
+            <!-- 2. KEY CONCEPTS -->
+            <h2>Key Concepts</h2>
+            <table class="concept-table">
+                <thead>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Definition</th>
+                        <th>Engineering Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Grid Container</strong></td>
+                        <td>The parent element where <code>display: grid</code> is applied.</td>
+                        <td>The coordinate system for the layout.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Grid Track</strong></td>
+                        <td>The space between two grid lines (either a row or a column).</td>
+                        <td>The "pathway" for content.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Grid Cell</strong></td>
+                        <td>The intersection of a grid row and a grid column.</td>
+                        <td>The smallest unit of the grid.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>fr Unit</strong></td>
+                        <td>A fractional unit representing a portion of the free space.</td>
+                        <td>Enables proportional, flexible sizing.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gap</strong></td>
+                        <td>The gutter or space between grid tracks.</td>
+                        <td>Controls information density.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- SECTION 1: THE FRACTIONAL UNIT (fr) -->
+            <h2>1. The Mathematics of Space: The $fr$ Unit</h2>
+            <p>One of the most innovative features of CSS Grid is the <strong>fr</strong> unit. It allows you to set the size of a track as a fraction of the free space in the grid container. This eliminates the need for calculating percentages ($%$) or pixels ($px$).</p>
+
+            <div style="background: #16213e; color: #38bdf8; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <p><strong>Proportional Logic:</strong></p>
+                <p style="text-align: center; font-size: 1.2rem;">$$Total Width = \sum (n \cdot fr) + \sum Gaps$$</p>
+                <p style="font-size: 0.9rem; margin-top: 10px; color: #c0c8e0;">If you define columns as <code>1fr 2fr 1fr</code>, the middle column will always be exactly twice as wide as the outer columns, regardless of the total width of the screen.</p>
+            </div>
+
+            <!-- SECTION 2: DEFINING THE GRID -->
+            <h2>2. Defining the Blueprint</h2>
+            <p>To build a grid, you define the tracks on the container. You can use the <code>repeat()</code> function to simplify repetitive patterns.</p>
+
+            <div class="code-block"><span class="comment">/* 1. Define a 3-column grid */</span>
+<span class="tag">.grid-wrapper</span> {
+    <span class="attr">display</span>: <span class="value">grid</span>;
+    <span class="attr">grid-template-columns</span>: <span class="value">200px 1fr 1fr</span>;
+    <span class="attr">grid-template-rows</span>: <span class="value">repeat(3, 100px)</span>;
+    <span class="attr">gap</span>: <span class="value">20px</span>;
+}
+
+<span class="comment">/* 2. Precise placement of an item */</span>
+<span class="tag">.sidebar</span> {
+    <span class="attr">grid-column</span>: <span class="value">1 / 2</span>; <span class="comment">/* Starts at line 1, ends at line 2 */</span>
+    <span class="attr">grid-row</span>: <span class="value">1 / 4</span>;    <span class="comment">/* Spans all 3 rows */</span>
+}</div>
+
+            <!-- SECTION 3: VISUAL SANDBOX -->
+            <h2>3. Visual Sandbox: 2D Page Architecture</h2>
+            <p>Below is a classic "Holy Grail" layout built with CSS Grid. Notice how the header and footer span all columns, while the sidebar and main content sit side-by-side.</p>
+
+            <div class="sandbox" style="display: grid; grid-template-columns: 1fr 3fr; grid-template-rows: auto auto auto; gap: 10px; background: #0f172a; padding: 15px; border: 2px dashed #264de4; border-radius: 8px;">
+                <div style="grid-column: 1 / 3; background: #264de4; color: white; padding: 10px; text-align: center; font-weight: bold;">HEADER</div>
+                <div style="background: #38bdf8; color: #0f172a; padding: 40px 10px; text-align: center; font-weight: bold;">SIDEBAR</div>
+                <div style="background: #f8fafc; color: #0f172a; padding: 40px 10px; text-align: center; font-weight: bold;">MAIN CONTENT</div>
+                <div style="grid-column: 1 / 3; background: #1e293b; color: #8892b0; padding: 10px; text-align: center; font-size: 0.8rem;">FOOTER</div>
+            </div>
+
+            <!-- SECTION 4: GRID vs FLEXBOX -->
+            <h2>4. Decision Matrix: Grid or Flexbox?</h2>
+            <p>A Senior Engineer knows that these tools are complementary. Use this logic to decide which to apply:</p>
+            <table class="concept-table">
+                <thead>
+                    <tr><th>Requirement</th><th>Recommended Tool</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Overall page structure (Layout)</td><td><strong>CSS Grid</strong></td></tr>
+                    <tr><td>Complex alignment in two directions</td><td><strong>CSS Grid</strong></td></tr>
+                    <tr><td>Simple row or column of items</td><td><strong>Flexbox</strong></td></tr>
+                    <tr><td>Centering a single element</td><td><strong>Flexbox</strong></td></tr>
+                    <tr><td>Alignment within a component (e.g. Nav bar)</td><td><strong>Flexbox</strong></td></tr>
+                </tbody>
+            </table>
+
+            <!-- SUMMARY -->
+            <div class="summary-box">
+                <h3>📋 Chapter Summary</h3>
+                <ul>
+                    <li><strong>CSS Grid</strong> is a 2D layout system for rows and columns.</li>
+                    <li>The <strong>fr unit</strong> makes flexible, proportional sizing simple and mathematical.</li>
+                    <li>Use <code>grid-template-columns</code> and <code>rows</code> to define your blueprint.</li>
+                    <li>Items are placed using <strong>Grid Lines</strong> (e.g., <code>1 / 3</code> spans two tracks).</li>
+                    <li>Combine Grid for the "Big Picture" and Flexbox for "Small Components" to achieve professional-grade UI architecture.</li>
+                </ul>
+            </div>
+
+            <!-- CHAPTER NAVIGATION -->
+            <nav class="chapter-nav">
+                <a href="ch04-flexbox-layout.html">← Chapter 4: Flexbox Layout</a>
+                <a href="ch06-responsive-design.html">Chapter 6: Responsive Design →</a>
+            </nav>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Jethneil Joem Calayan — The Engineer's Codex</p>
+        <p class="version">Version: 042520260730</p>
+    </footer>
+
+</body>
+</html>
