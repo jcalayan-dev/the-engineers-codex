@@ -1,44 +1,50 @@
 /* ===========================
-   VOLUME 1 — SPECIFIC STYLES
+   VOLUME STYLES (Shared)
    Extends global style.css
    =========================== */
 
 /* Back Link */
 .back-link {
-    color: #e94560;
+    color: #4ecdc4;
     text-decoration: none;
-    transition: color 0.2s ease;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color 0.2s ease, opacity 0.2s ease;
+    opacity: 0.85;
 }
 
 .back-link:hover {
-    color: #ff6b81;
+    color: #6ee7de;
     text-decoration: underline;
+    opacity: 1;
 }
 
 /* ===========================
    VOLUME INTRODUCTION BOX
    =========================== */
 .vol-intro {
-    background-color: #16213e;
-    border-left: 4px solid #e94560;
-    padding: 25px 30px;
+    background-color: #161923;
+    border-left: 3px solid #4ecdc4;
+    padding: 28px 32px;
     margin-bottom: 40px;
-    border-radius: 0 8px 8px 0;
+    border-radius: 0 10px 10px 0;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
 }
 
 .vol-intro h2 {
     text-align: left;
     font-size: 1.4rem;
-    color: #e94560;
+    color: #4ecdc4;
     margin-bottom: 12px;
+    font-weight: 600;
 }
 
 .vol-intro p {
-    color: #c0c8e0;
-    line-height: 1.8;
+    color: #c0c8dc;
+    line-height: 1.85;
     font-size: 0.95rem;
     margin-bottom: 10px;
     text-align: justify;
@@ -59,18 +65,18 @@
     text-decoration: none;
     color: inherit;
     padding: 20px 25px;
-    border-bottom: 1px solid #2a2a4a;
+    border-bottom: 1px solid #1e2231;
     transition: background-color 0.2s ease, border-left 0.2s ease;
 }
 
 .toc-item:first-child {
-    border-top: 1px solid #2a2a4a;
+    border-top: 1px solid #1e2231;
 }
 
 .toc-item:hover {
-    background-color: #16213e;
-    border-left: 4px solid #e94560;
-    padding-left: 21px;
+    background-color: #161923;
+    border-left: 3px solid #4ecdc4;
+    padding-left: 22px;
 }
 
 .toc-chapter {
@@ -78,33 +84,34 @@
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: #e94560;
+    color: #4ecdc4;
     margin-bottom: 4px;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    font-weight: 600;
 }
 
 .toc-title {
     display: block;
     font-size: 1.2rem;
-    color: #ffffff;
-    font-weight: bold;
+    color: #f0f2f5;
+    font-weight: 600;
     margin-bottom: 6px;
 }
 
 .toc-desc {
     display: block;
     font-size: 0.85rem;
-    color: #8892b0;
-    line-height: 1.5;
+    color: #8b95a5;
+    line-height: 1.55;
 }
 
 .toc-desc code {
-    background-color: #2a2a4a;
-    color: #e94560;
-    padding: 1px 5px;
-    border-radius: 3px;
+    background-color: #1e2231;
+    color: #4ecdc4;
+    padding: 2px 6px;
+    border-radius: 4px;
     font-size: 0.8rem;
-    font-family: 'Courier New', monospace;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
 }
 
 /* ===========================
@@ -118,17 +125,19 @@
 
 .chapter-content h2 {
     text-align: left;
-    border-bottom: 2px solid #e94560;
-    padding-bottom: 8px;
-    margin-top: 40px;
-    margin-bottom: 15px;
+    border-bottom: 2px solid rgba(78, 205, 196, 0.3);
+    padding-bottom: 10px;
+    margin-top: 45px;
+    margin-bottom: 18px;
+    color: #f0f2f5;
+    font-weight: 600;
 }
 
 .chapter-content p {
     line-height: 1.9;
     font-size: 1rem;
-    color: #c0c8e0;
-    margin-bottom: 15px;
+    color: #c0c8dc;
+    margin-bottom: 16px;
     text-align: justify;
 }
 
@@ -136,25 +145,25 @@
    CODE BLOCKS (Syntax Display)
    =========================== */
 .code-block {
-    background-color: #0f0f23;
-    border: 1px solid #2a2a4a;
-    border-left: 4px solid #e94560;
-    border-radius: 0 6px 6px 0;
-    padding: 20px;
-    margin: 20px 0;
+    background-color: #0b0d14;
+    border: 1px solid #1e2231;
+    border-left: 3px solid #4ecdc4;
+    border-radius: 0 8px 8px 0;
+    padding: 22px;
+    margin: 22px 0;
     overflow-x: auto;
-    font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
-    line-height: 1.7;
-    color: #a8b2d1;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: #b0b8cc;
     white-space: pre;
 }
 
-.code-block .tag     { color: #e94560; }
+.code-block .tag     { color: #4ecdc4; }
 .code-block .attr    { color: #ffd43b; }
 .code-block .value   { color: #69f0ae; }
-.code-block .comment { color: #5c6370; font-style: italic; }
-.code-block .text    { color: #ffffff; }
+.code-block .comment { color: #505868; font-style: italic; }
+.code-block .text    { color: #e8ecf2; }
 
 /* ===========================
    KEY CONCEPTS TABLE
@@ -162,52 +171,58 @@
 .concept-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
+    margin: 22px 0;
     font-size: 0.9rem;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .concept-table th {
-    background-color: #16213e;
-    color: #e94560;
+    background-color: #161923;
+    color: #4ecdc4;
     text-align: left;
-    padding: 12px 15px;
-    border: 1px solid #2a2a4a;
-    font-weight: bold;
+    padding: 13px 16px;
+    border: 1px solid #1e2231;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.3px;
 }
 
 .concept-table td {
-    padding: 10px 15px;
-    border: 1px solid #2a2a4a;
-    color: #c0c8e0;
+    padding: 11px 16px;
+    border: 1px solid #1e2231;
+    color: #c0c8dc;
 }
 
 .concept-table tr:hover {
-    background-color: #16213e;
+    background-color: #161923;
 }
 
 .concept-table code {
-    background-color: #2a2a4a;
-    color: #e94560;
-    padding: 1px 5px;
-    border-radius: 3px;
-    font-family: 'Courier New', monospace;
+    background-color: #1e2231;
+    color: #4ecdc4;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
 }
 
 /* ===========================
    SUMMARY BOX
    =========================== */
 .summary-box {
-    background-color: #16213e;
-    border: 2px solid #e94560;
-    border-radius: 8px;
-    padding: 25px;
-    margin: 30px 0;
+    background-color: #161923;
+    border: 1.5px solid rgba(78, 205, 196, 0.3);
+    border-radius: 10px;
+    padding: 26px;
+    margin: 32px 0;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
 }
 
 .summary-box h3 {
-    color: #e94560;
-    margin-bottom: 12px;
+    color: #4ecdc4;
+    margin-bottom: 14px;
     font-size: 1.1rem;
+    font-weight: 600;
 }
 
 .summary-box ul {
@@ -216,27 +231,30 @@
 }
 
 .summary-box li {
-    color: #c0c8e0;
-    padding: 5px 0;
-    padding-left: 25px;
+    color: #c0c8dc;
+    padding: 6px 0;
+    padding-left: 28px;
     position: relative;
     font-size: 0.9rem;
-    line-height: 1.6;
+    line-height: 1.65;
 }
 
 .summary-box li::before {
-    content: "✅";
+    content: "\2713";
     position: absolute;
     left: 0;
+    color: #4ecdc4;
+    font-weight: 700;
+    font-size: 1rem;
 }
 
 /* ===========================
    DIAGRAM / VISUAL AID BOX
    =========================== */
 .diagram-box {
-    background-color: #0f0f23;
-    border: 2px dashed #2a2a4a;
-    border-radius: 8px;
+    background-color: #0b0d14;
+    border: 2px dashed #1e2231;
+    border-radius: 10px;
     padding: 30px;
     margin: 25px 0;
     text-align: center;
@@ -245,15 +263,15 @@
 .diagram-box img {
     max-width: 100%;
     height: auto;
-    border-radius: 4px;
+    border-radius: 6px;
 }
 
 .diagram-box .caption {
     text-align: center;
-    color: #5c6370;
+    color: #505868;
     font-style: italic;
     font-size: 0.8rem;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 /* ===========================
@@ -264,28 +282,28 @@
     justify-content: space-between;
     align-items: center;
     padding: 25px 0;
-    margin-top: 30px;
-    border-top: 1px solid #2a2a4a;
+    margin-top: 35px;
+    border-top: 1px solid #1e2231;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .chapter-nav a {
-    color: #e94560;
+    color: #4ecdc4;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
     font-size: 0.9rem;
     transition: color 0.2s ease;
 }
 
 .chapter-nav a:hover {
-    color: #ff6b81;
+    color: #6ee7de;
     text-decoration: underline;
 }
 
 .chapter-nav .disabled {
-    color: #3a3a5a;
+    color: #2a2f3d;
     cursor: not-allowed;
     pointer-events: none;
 }
@@ -294,28 +312,30 @@
    NOTE / TIP CALLOUT BOX
    =========================== */
 .note-box {
-    background-color: #1a2744;
-    border-left: 4px solid #ffd43b;
-    padding: 15px 20px;
-    margin: 20px 0;
-    border-radius: 0 6px 6px 0;
+    background-color: #161923;
+    border-left: 3px solid #ffd43b;
+    padding: 16px 22px;
+    margin: 22px 0;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .note-box .note-label {
-    font-weight: bold;
+    font-weight: 600;
     color: #ffd43b;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 5px;
+    letter-spacing: 1.2px;
+    margin-bottom: 6px;
     display: block;
 }
 
 .note-box p {
-    color: #c0c8e0;
+    color: #c0c8dc;
     font-size: 0.9rem;
     margin: 0;
     text-align: left;
+    line-height: 1.7;
 }
 
 /* ===========================
@@ -340,7 +360,7 @@
     }
 
     .code-block {
-        padding: 15px;
+        padding: 16px;
         font-size: 0.8rem;
     }
 
