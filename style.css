@@ -1,6 +1,7 @@
 /* ===========================
    GLOBAL RESET & BASE
    =========================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -8,13 +9,15 @@
 }
 
 body {
-    font-family: 'Segoe UI', 'Georgia', serif;
-    background-color: #1a1a2e;
-    color: #e0e0e0;
+    font-family: 'Inter', 'Segoe UI', -apple-system, sans-serif;
+    background-color: #0f1117;
+    color: #d0d5e0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    line-height: 1.6;
+    line-height: 1.7;
+    /*-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;*/
 }
 
 /* ===========================
@@ -22,27 +25,45 @@ body {
    =========================== */
 .hero {
     text-align: center;
-    padding: 40px 15px;
-    background: linear-gradient(135deg, #16213e, #0f3460);
-    border-bottom: 4px solid #e94560;
+    padding: 60px 20px 50px;
+    background: linear-gradient(160deg, #141821 0%, #1a1d2e 100%);
+    border-bottom: 1px solid rgba(78, 205, 196, 0.2);
+    position: relative;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #4ecdc4, transparent);
+    border-radius: 2px;
 }
 
 .hero h1 {
     font-size: clamp(1.6rem, 5vw, 2.8rem);
-    color: #ffffff;
-    margin-bottom: 10px;
+    font-weight: 700;
+    color: #f0f2f5;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
 }
 
 .hero .subtitle {
-    font-size: clamp(0.85rem, 2.5vw, 1.2rem);
-    color: #a8b2d1;
+    font-size: clamp(0.9rem, 2.5vw, 1.15rem);
+    color: #8b95a5;
     font-style: italic;
-    margin-bottom: 5px;
+    font-weight: 400;
+    margin-bottom: 6px;
 }
 
 .hero .author {
-    font-size: clamp(0.8rem, 2vw, 1rem);
-    color: #8892b0;
+    font-size: clamp(0.8rem, 2vw, 0.95rem);
+    color: #636d7e;
+    font-weight: 500;
+    letter-spacing: 0.5px;
 }
 
 /* ===========================
@@ -50,7 +71,7 @@ body {
    =========================== */
 .bookshelf-section {
     flex: 1;
-    padding: 30px 15px;
+    padding: 40px 20px;
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
@@ -58,17 +79,20 @@ body {
 
 .bookshelf-section h2 {
     text-align: center;
-    font-size: clamp(1.4rem, 4vw, 2rem);
-    color: #e94560;
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
+    color: #4ecdc4;
     margin-bottom: 10px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
 }
 
 .shelf-description {
     text-align: center;
-    color: #8892b0;
-    margin-bottom: 35px;
-    font-size: clamp(0.8rem, 2vw, 1rem);
+    color: #8b95a5;
+    margin-bottom: 40px;
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
     padding: 0 10px;
+    font-weight: 400;
 }
 
 /* ===========================
@@ -76,10 +100,10 @@ body {
    =========================== */
 .bookshelf {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 24px;
     justify-items: center;
-    padding: 0 10px;
+    padding: 20px 0;
 }
 
 /* ===========================
@@ -90,23 +114,24 @@ body {
     width: 100%;
     max-width: 180px;
     aspect-ratio: 2 / 3;
-    border-radius: 4px 12px 12px 4px;
+    border-radius: 6px 14px 14px 6px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-decoration: none;
     color: inherit;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 .book.active:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(233, 69, 96, 0.3);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 16px 48px rgba(78, 205, 196, 0.2), 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .book.coming-soon:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     cursor: not-allowed;
 }
 
@@ -119,8 +144,8 @@ body {
     top: 0;
     width: 10px;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.25);
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.3);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
     z-index: 2;
 }
 
@@ -133,63 +158,96 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 15px 12px;
+    padding: 18px 14px;
     text-align: center;
+}
+
+.book-logo {
+    width: 100px;     /* 65px */
+    height: 100px;   /* 65px */
+    object-fit: contain;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+    margin-bottom: 5px;
+}
+
+.grayscale {
+    filter: grayscale(100%) opacity(0.4);
 }
 
 .volume-number {
     font-size: 0.65rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 2.5px;
+    color: rgba(255, 255, 255, 0.6);
     margin-bottom: 12px;
+    font-weight: 600;
 }
 
 .book-cover h3 {
-    font-size: clamp(1rem, 3vw, 1.3rem);
+    font-size: clamp(1rem, 3vw, 1.25rem);
     color: #ffffff;
     margin-bottom: 6px;
     line-height: 1.3;
+    font-weight: 700;
 }
 
 .language-label {
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.75);
     font-style: italic;
     margin-bottom: 15px;
+    font-weight: 400;
 }
 
 /* ===========================
    STATUS BADGES
    =========================== */
 .status-badge {
-    font-size: 0.6rem;
-    padding: 3px 8px;
-    border-radius: 10px;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 0.58rem;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.3px;
 }
 
 .active-badge {
-    background-color: rgba(0, 200, 83, 0.15);
-    border: 1px solid rgba(0, 200, 83, 0.5);
-    color: #69f0ae;
+    background-color: rgba(78, 205, 196, 0.15);
+    border: 1px solid rgba(78, 205, 196, 0.4);
+    color: #4ecdc4;
 }
 
 .future-badge {
-    background-color: rgba(100, 149, 237, 0.15);
-    border: 1px solid rgba(100, 149, 237, 0.4);
-    color: #90caf9;
+    background-color: rgba(100, 149, 237, 0.12);
+    border: 1px solid rgba(100, 149, 237, 0.3);
+    color: #90b4f8;
+}
+
+.complete-badge {
+    background-color: rgba(78, 205, 196, 0.15);
+    border: 1px solid rgba(78, 205, 196, 0.4);
+    color: #4ecdc4;
+}
+
+.in-progress-badge {
+    background-color: rgba(255, 212, 59, 0.12);
+    border: 1px solid rgba(255, 212, 59, 0.35);
+    color: #ffd43b;
 }
 
 /* ===========================
    COVER COLORS (PER VOLUME)
    =========================== */
-.cover-html    { background: linear-gradient(160deg, #e44d26, #f16529); }
-.cover-css     { background: linear-gradient(160deg, #264de4, #2965f1); }
-.cover-java    { background: linear-gradient(160deg, #5382a1, #f89820); }
-.cover-python  { background: linear-gradient(160deg, #306998, #ffd43b); }
-.cover-cpp     { background: linear-gradient(160deg, #00599c, #004482); }
-.cover-sql     { background: linear-gradient(160deg, #e38d13, #f29111); }
+.cover-html     { background: linear-gradient(160deg, #d44a1d, #e8602a); }
+.cover-css      { background: linear-gradient(160deg, #2352c7, #3271f5); }
+.cover-js       { background: linear-gradient(160deg, #e6c619, #ccad00); color: #1a1a1a; }
+.cover-react    { background: linear-gradient(160deg, #1c1e26, #4eaee0); }
+.cover-node     { background: linear-gradient(160deg, #2d2d2d, #3a9a3a); }
+.cover-sql      { background: linear-gradient(160deg, #c77d10, #e09015); }
+.cover-postgres { background: linear-gradient(160deg, #2d5580, #346d9e); }
+.cover-python   { background: linear-gradient(160deg, #2f6792, #e6c44d); }
+.cover-c        { background: linear-gradient(160deg, #4a4a5a, #8a9ab0); }
+.cover-cpp      { background: linear-gradient(160deg, #004a8c, #003d75); }
 
 /* ===========================
    COMING SOON OVERLAY
@@ -200,7 +258,9 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.55);
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -208,25 +268,26 @@ body {
 }
 
 .overlay span {
-    color: #ffffff;
-    font-size: 0.75rem;
-    font-weight: bold;
-    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    padding: 6px 14px;
-    border-radius: 6px;
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+    padding: 6px 16px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
 }
 
 /* ===========================
-   FOOTER (With Version)
+   FOOTER
    =========================== */
 footer {
     text-align: center;
-    padding: 25px 15px;
-    background-color: #0f0f23;
-    border-top: 2px solid #e94560;
-    color: #8892b0;
+    padding: 30px 20px;
+    background-color: #0b0d14;
+    border-top: 1px solid rgba(78, 205, 196, 0.15);
+    color: #636d7e;
     font-size: 0.8rem;
 }
 
@@ -236,11 +297,12 @@ footer p {
 
 .version {
     margin-top: 8px;
-    font-family: 'Courier New', monospace;
-    color: #e94560;
-    font-weight: bold;
-    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    color: #4ecdc4;
+    font-weight: 500;
+    font-size: 0.72rem;
     letter-spacing: 1px;
+    opacity: 0.8;
 }
 
 /* ===========================
@@ -250,12 +312,12 @@ footer p {
 /* Tablets */
 @media (max-width: 768px) {
     .hero {
-        padding: 30px 15px;
+        padding: 40px 15px 35px;
     }
 
     .bookshelf {
         grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-        gap: 15px;
+        gap: 16px;
     }
 }
 
@@ -263,12 +325,12 @@ footer p {
 @media (max-width: 480px) {
     .bookshelf {
         grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        gap: 14px;
         padding: 0 5px;
     }
 
     .book-cover {
-        padding: 10px 8px;
+        padding: 12px 10px;
     }
 
     .language-label {
@@ -276,7 +338,7 @@ footer p {
     }
 
     .overlay span {
-        font-size: 0.6rem;
+        font-size: 0.58rem;
         padding: 4px 10px;
     }
 }
